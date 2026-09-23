@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, EASE, DURATION } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { SITE } from "@/lib/data/site";
 import { Newsletter } from "@/components/forms/Newsletter";
-import { UnderlineLink } from "@/components/ui/Primitives";
+import { Reveal, UnderlineLink } from "@/components/ui/Primitives";
 
 const COLUMNS = [
   {
@@ -54,8 +54,8 @@ export function Footer() {
         {
           yPercent: 0,
           autoAlpha: 1,
-          duration: 1.2,
-          ease: "power3.out",
+          duration: DURATION.slow,
+          ease: EASE.out,
           stagger: 0.05,
           scrollTrigger: { trigger: el, start: "top 92%", once: true },
         },
@@ -87,23 +87,36 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-ink text-porcelain">
       <div className="shell pt-(--spacing-section)">
-        <div className="grid gap-14 border-b border-porcelain/12 pb-16 lg:grid-cols-[1.2fr_1.8fr]">
+        <Reveal
+          className="grid gap-14 border-b border-porcelain/12 pb-16 lg:grid-cols-[1.2fr_1.8fr]"
+          stagger={0.05}
+          start="top 95%"
+        >
           <div className="flex flex-col gap-6">
-            <span className="display-md">{SITE.name}</span>
-            <p className="body-lg max-w-sm text-porcelain/60">
+            <span data-anim="fade-up" className="display-md">
+              {SITE.name}
+            </span>
+            <p data-anim="fade-up" className="body-lg max-w-sm text-porcelain/60">
               Architectural ceramic surfaces and hand-thrown vessels, made in
               one works since {SITE.founded}.
             </p>
-            <Newsletter tone="dark" />
+            <div data-anim="fade-up">
+              <Newsletter tone="dark" />
+            </div>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3">
             {COLUMNS.map((column) => (
               <nav key={column.title} aria-label={column.title}>
-                <h2 className="label mb-6 text-porcelain/40">{column.title}</h2>
-                <ul className="flex flex-col gap-3">
+                <h2 data-anim="fade" className="label mb-6 text-porcelain/40">
+                  {column.title}
+                </h2>
+                {/* Padding on the links rather than a gap on the list: the
+                    row pitch is unchanged but each target is tall enough to
+                    hit on a phone. */}
+                <ul className="flex flex-col">
                   {column.links.map((link) => (
-                    <li key={link.label}>
+                    <li key={link.label} data-anim="fade-up">
                       <UnderlineLink
                         href={link.href}
                         className="body-base text-porcelain/80 transition-colors hover:text-porcelain"
@@ -116,18 +129,22 @@ export function Footer() {
               </nav>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col gap-2">
+        <Reveal
+          className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4"
+          stagger={0.07}
+          start="top 95%"
+        >
+          <div data-anim="fade-up" className="flex flex-col gap-2">
             <span className="label text-porcelain/40">Studio</span>
             <p className="body-sm text-porcelain/70">{SITE.contact.studio}</p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div data-anim="fade-up" className="flex flex-col gap-2">
             <span className="label text-porcelain/40">Showroom</span>
             <p className="body-sm text-porcelain/70">{SITE.contact.showroom}</p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div data-anim="fade-up" className="flex flex-col gap-2">
             <span className="label text-porcelain/40">Enquiries</span>
             <UnderlineLink
               href={`mailto:${SITE.contact.email}`}
@@ -138,9 +155,9 @@ export function Footer() {
             </UnderlineLink>
             <span className="body-sm text-porcelain/70">{SITE.contact.phone}</span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div data-anim="fade-up" className="flex flex-col gap-2">
             <span className="label text-porcelain/40">Follow</span>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col">
               {SITE.social.map((social) => (
                 <li key={social.label}>
                   <UnderlineLink
@@ -154,7 +171,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <div
@@ -178,16 +195,16 @@ export function Footer() {
           &copy; {new Date().getFullYear()} {SITE.legalName}. Demo site — all
           content is placeholder.
         </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <UnderlineLink href="/contact" className="label text-porcelain/35 hover:text-porcelain/70">
-            Privacy
-          </UnderlineLink>
-          <UnderlineLink href="/contact" className="label text-porcelain/35 hover:text-porcelain/70">
-            Terms
-          </UnderlineLink>
-          <UnderlineLink href="/contact" className="label text-porcelain/35 hover:text-porcelain/70">
-            Cookies
-          </UnderlineLink>
+        <div className="-my-2 flex flex-wrap gap-x-6">
+          {["Privacy", "Terms", "Cookies"].map((item) => (
+            <UnderlineLink
+              key={item}
+              href="/contact"
+              className="label text-porcelain/35 transition-colors hover:text-porcelain/70"
+            >
+              {item}
+            </UnderlineLink>
+          ))}
         </div>
       </div>
     </footer>

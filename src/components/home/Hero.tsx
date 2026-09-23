@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, EASE, DURATION, TRAVEL } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { BLUR, src } from "@/lib/images";
@@ -54,48 +54,50 @@ export function Hero() {
         return;
       }
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: EASE.out } });
 
       tl
-        // 1. Image reveals through a rising mask.
+        // 1. The frame opens outward to full bleed.
         .fromTo(
           mediaRef.current,
-          { clipPath: "inset(18% 12% 18% 12%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.out" },
+          { clipPath: "inset(14% 9% 14% 9%)" },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: EASE.expo },
         )
+        // A restrained settle: enough to feel the image arrive, not enough to
+        // read as a zoom.
         .fromTo(
           imageRef.current,
-          { scale: 1.25 },
-          { scale: 1, duration: 1.9, ease: "expo.out" },
+          { scale: 1.08 },
+          { scale: 1, duration: 1.9, ease: EASE.expo },
           0,
         )
-        // 2. Heading lines rise.
+        // 2. Heading lines rise from their masks, one behind the next.
         .fromTo(
           "[data-hero-line]",
-          { yPercent: 112 },
-          { yPercent: 0, duration: 1.15, stagger: 0.09 },
-          0.35,
+          { yPercent: 108 },
+          { yPercent: 0, duration: DURATION.slow, stagger: 0.085 },
+          0.3,
         )
         // 3. Supporting text.
         .fromTo(
           "[data-hero-fade]",
-          { autoAlpha: 0, y: 24 },
-          { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.08 },
-          0.9,
+          { autoAlpha: 0, y: TRAVEL.md },
+          { autoAlpha: 1, y: 0, duration: DURATION.base, stagger: 0.08 },
+          0.82,
         )
         // 4. Call to action.
         .fromTo(
           "[data-hero-cta]",
-          { autoAlpha: 0, y: 18 },
-          { autoAlpha: 1, y: 0, duration: 0.8 },
-          1.1,
+          { autoAlpha: 0, y: TRAVEL.sm },
+          { autoAlpha: 1, y: 0, duration: DURATION.base },
+          1.0,
         )
-        // 5. Editorial details last.
+        // 5. Editorial details last, so the eye lands on them after the claim.
         .fromTo(
           "[data-hero-detail]",
-          { autoAlpha: 0, y: 14 },
-          { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07 },
-          1.25,
+          { autoAlpha: 0, y: TRAVEL.sm },
+          { autoAlpha: 1, y: 0, duration: DURATION.fast, stagger: 0.07 },
+          1.15,
         );
 
       // Gentle parallax on the backdrop while scrolling out of the hero.
@@ -152,10 +154,16 @@ export function Hero() {
             className="object-cover"
           />
         </div>
-        {/* Legibility scrim — kept subtle so the photograph still reads. */}
+        {/* Legibility scrims. The vertical one anchors the headline; the
+            horizontal one only appears where the supporting copy sits, so the
+            middle of the photograph stays clean. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/35"
+          className="absolute inset-0 hidden bg-gradient-to-l from-ink/55 via-ink/10 to-transparent lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-ink/40"
         />
       </div>
 

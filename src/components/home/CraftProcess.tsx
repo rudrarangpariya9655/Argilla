@@ -111,17 +111,38 @@ export function CraftProcess() {
                     placeholder="blur"
                     blurDataURL={BLUR}
                     className={cn(
-                      "object-cover transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "object-cover transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
                       active === i
                         ? "scale-100 opacity-100"
-                        : "scale-[1.08] opacity-0",
+                        : "scale-[1.05] opacity-0",
                     )}
                   />
                 ))}
 
-                <span className="absolute left-6 top-6 flex items-baseline gap-3 text-porcelain mix-blend-difference">
-                  <span className="display-md tabular-nums">
-                    {CRAFT_STAGES[active].index}
+                {/* The stage number rolls like an odometer: all five are
+                    stacked in a masked column and the column is translated, so
+                    the change is one transform rather than a text swap. A
+                    gradient carries it over any photograph, where
+                    mix-blend-difference disappeared on pale frames. */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/55 to-transparent"
+                />
+                <span className="absolute left-6 top-6 flex items-baseline gap-3 text-porcelain">
+                  <span className="relative block h-[1.05em] overflow-hidden">
+                    <span
+                      className="flex flex-col transition-transform duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      style={{ transform: `translateY(-${active * 100}%)` }}
+                    >
+                      {CRAFT_STAGES.map((s) => (
+                        <span
+                          key={s.index}
+                          className="display-md block leading-[1.05] tabular-nums"
+                        >
+                          {s.index}
+                        </span>
+                      ))}
+                    </span>
                   </span>
                   <span className="label opacity-70">
                     / {CRAFT_STAGES.length.toString().padStart(2, "0")}
@@ -143,10 +164,17 @@ export function CraftProcess() {
                   <div className="flex items-baseline gap-5">
                     <span
                       className={cn(
-                        "label tabular-nums transition-colors duration-500",
+                        "label flex items-center gap-2.5 tabular-nums transition-colors duration-500",
                         active === i ? "text-terracotta" : "text-umber/40",
                       )}
                     >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "block h-px origin-left bg-current transition-[width,opacity] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                          active === i ? "w-6 opacity-100" : "w-0 opacity-0",
+                        )}
+                      />
                       {stage.index}
                     </span>
                     <span className="label text-umber/50">

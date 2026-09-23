@@ -29,7 +29,7 @@ export function ProjectCard({
   priority = false,
 }: Props) {
   return (
-    <article data-anim="fade-up" className={cn("group", className)}>
+    <article data-anim="rise" className={cn("group", className)}>
       <TransitionLink
         href={`/projects/${project.slug}`}
         data-cursor="view"
@@ -45,7 +45,7 @@ export function ProjectCard({
             priority={priority}
             placeholder="blur"
             blurDataURL={BLUR}
-            className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+            className="object-cover transition-transform duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
           />
           <span
             aria-hidden="true"
@@ -58,7 +58,7 @@ export function ProjectCard({
 
         <div className="flex items-start justify-between gap-6 pt-5">
           <div className="flex flex-col gap-2">
-            <h3 className="display-sm text-charcoal transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
+            <h3 className="display-sm text-charcoal transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
               {project.name}
             </h3>
             <p className="body-sm text-umber/85">
@@ -72,7 +72,7 @@ export function ProjectCard({
             </span>
             <ArrowUpRight
               aria-hidden="true"
-              className="size-4 text-charcoal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:translate-x-1"
+              className="size-4 text-charcoal transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:translate-x-1"
             />
           </div>
         </div>

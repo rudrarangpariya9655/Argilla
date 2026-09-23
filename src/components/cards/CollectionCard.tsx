@@ -32,7 +32,7 @@ export function CollectionCard({
   priority = false,
 }: Props) {
   return (
-    <article data-anim="fade-up" className={cn("group", className)}>
+    <article data-anim="rise" className={cn("group", className)}>
       <TransitionLink
         href={`/collections/${collection.slug}`}
         data-cursor="view"
@@ -54,35 +54,38 @@ export function CollectionCard({
             priority={priority}
             placeholder="blur"
             blurDataURL={BLUR}
-            className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+            className="object-cover transition-transform duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
           />
-          {/* Mask sweeps across on hover. */}
+          {/* A soft darkening from the base, so the index stays readable and
+              the image gains depth without being tinted. */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 origin-bottom scale-y-0 bg-ink/25 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/20 opacity-70 transition-opacity duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
           />
-          <span className="label absolute left-5 top-5 text-porcelain/80 mix-blend-difference tabular-nums">
+          {/* Index: a plain light label over the gradient reads on every image,
+              where mix-blend-difference vanished on pale clay photography. */}
+          <span className="label absolute left-5 top-5 text-porcelain tabular-nums drop-shadow-[0_1px_6px_rgba(22,18,15,0.55)] transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5">
             {String(index).padStart(2, "0")}
           </span>
         </div>
 
         <div className="flex items-start justify-between gap-6 pt-5">
           <div className="flex flex-col gap-2">
-            <h3 className="display-sm text-charcoal transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
+            <h3 className="display-sm text-charcoal transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
               {collection.name}
             </h3>
-            <p className="body-sm max-w-xs text-umber/85">
+            <p className="body-sm max-w-xs text-umber/85 transition-colors duration-[420ms] group-hover:text-umber">
               {collection.strapline}
             </p>
           </div>
 
           <div className="flex shrink-0 flex-col items-end gap-3">
-            <span className="label text-umber/55 tabular-nums">
+            <span className="label text-umber/55 tabular-nums transition-colors duration-[420ms] group-hover:text-terracotta">
               {collection.productCount} surfaces
             </span>
             <ArrowUpRight
               aria-hidden="true"
-              className="size-5 text-charcoal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:translate-x-1"
+              className="size-5 text-charcoal transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:translate-x-1"
             />
           </div>
         </div>

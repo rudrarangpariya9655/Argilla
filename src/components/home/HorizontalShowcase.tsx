@@ -7,7 +7,8 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { BLUR, src, type Img } from "@/lib/images";
-import { UnderlineLink } from "@/components/ui/Primitives";
+import { TransitionLink } from "@/components/ui/TransitionLink";
+import { cn } from "@/lib/utils";
 
 type Slide = {
   name: string;
@@ -153,37 +154,64 @@ export function HorizontalShowcase() {
   }, []);
 
   // Pointer drag for the mobile/tablet scroller — touch gets it for free,
-  // this makes a narrow desktop window behave the same way.
+  // this makes a narrow desktop window behave the same way. The track gets a
+  // "grabbing" state and snapping is suspended mid-drag so the gesture tracks
+  // the pointer exactly instead of fighting the snap points.
   useIsomorphicLayoutEffect(() => {
     const viewport = viewportRef.current;
-    if (!viewport || isDesktop) return;
+    const track = trackRef.current;
+    if (!viewport || !track || isDesktop) return;
 
     let down = false;
+    let moved = false;
     let startX = 0;
     let startScroll = 0;
 
     const onDown = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") return;
       down = true;
+      moved = false;
       startX = event.clientX;
       startScroll = viewport.scrollLeft;
+      viewport.style.scrollSnapType = "none";
+      viewport.dataset.dragging = "true";
     };
+
     const onMove = (event: PointerEvent) => {
       if (!down) return;
-      viewport.scrollLeft = startScroll - (event.clientX - startX);
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) > 4) moved = true;
+      viewport.scrollLeft = startScroll - delta;
     };
+
     const onUp = () => {
+      if (!down) return;
       down = false;
+      delete viewport.dataset.dragging;
+      viewport.style.scrollSnapType = "x mandatory";
+    };
+
+    // A drag that moved should not also open the card it finished on.
+    const onClick = (event: MouseEvent) => {
+      if (!moved) return;
+      event.preventDefault();
+      event.stopPropagation();
+      moved = false;
     };
 
     viewport.addEventListener("pointerdown", onDown);
+    viewport.addEventListener("click", onClick, true);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
 
     return () => {
       viewport.removeEventListener("pointerdown", onDown);
+      viewport.removeEventListener("click", onClick, true);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      delete viewport.dataset.dragging;
     };
   }, [isDesktop]);
 
@@ -220,7 +248,7 @@ export function HorizontalShowcase() {
       <div
         ref={viewportRef}
         data-cursor={isDesktop ? undefined : "drag"}
-        className="no-scrollbar w-full overflow-x-auto overscroll-x-contain lg:overflow-visible"
+        className="no-scrollbar w-full cursor-grab overflow-x-auto overscroll-x-contain data-[dragging]:cursor-grabbing lg:cursor-auto lg:overflow-visible"
         style={{ scrollSnapType: isDesktop ? undefined : "x mandatory" }}
       >
         <div
@@ -231,19 +259,21 @@ export function HorizontalShowcase() {
             <article
               key={slide.name}
               data-slide
-              className="w-[78vw] shrink-0 sm:w-[54vw] md:w-[42vw] lg:w-[32vw] xl:w-[26vw]"
+              className={cn(
+                "w-[78vw] shrink-0 sm:w-[54vw] md:w-[42vw] lg:w-[32vw] xl:w-[26vw]",
+                // Alternating cards drop, so the row reads as a composition
+                // rather than a straight line. Every card keeps the same aspect
+                // so the drop is the only thing that varies.
+                i % 2 === 1 && "lg:mt-[9vh]",
+              )}
               style={{ scrollSnapAlign: isDesktop ? undefined : "center" }}
             >
-              <UnderlineLink
+              <TransitionLink
                 href={slide.href}
-                className="group block !items-stretch"
+                data-cursor="view"
+                className="group block"
               >
-                <span
-                  data-cursor="view"
-                  className={`relative block overflow-hidden bg-ink ${
-                    i % 3 === 1 ? "aspect-[3/4]" : "aspect-[4/5]"
-                  } ${i % 3 === 2 ? "lg:mt-[6vh]" : ""}`}
-                >
+                <span className="relative block aspect-[4/5] overflow-hidden bg-ink">
                   <Image
                     data-slide-media
                     src={src(slide.image, 1200)}
@@ -255,14 +285,19 @@ export function HorizontalShowcase() {
                     blurDataURL={BLUR}
                     className="scale-110 object-cover will-change-transform"
                   />
+                  {/* A whisper of warmth on hover, not a flash. */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-ink/25 opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+                  />
                 </span>
 
                 <span className="mt-5 flex items-start justify-between gap-5">
                   <span className="flex flex-col gap-1.5">
-                    <span className="display-sm block text-porcelain">
+                    <span className="display-sm block text-porcelain transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
                       {slide.name}
                     </span>
-                    <span className="body-sm block text-porcelain/50">
+                    <span className="body-sm block text-porcelain/50 transition-colors duration-500 group-hover:text-porcelain/75">
                       {slide.material}
                     </span>
                   </span>
@@ -275,22 +310,28 @@ export function HorizontalShowcase() {
                     </span>
                   </span>
                 </span>
-              </UnderlineLink>
+              </TransitionLink>
             </article>
           ))}
 
           {/* Closing panel so the track ends on a call to action. */}
           <article className="flex w-[70vw] shrink-0 items-center sm:w-[40vw] lg:w-[26vw]">
-            <UnderlineLink
+            <TransitionLink
               href="/products"
               className="group flex flex-col gap-4 text-porcelain"
             >
-              <span className="display-md block">View all surfaces</span>
+              <span className="display-md relative block w-fit">
+                View all surfaces
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:origin-left group-hover:scale-x-100 group-focus-visible:origin-left group-focus-visible:scale-x-100"
+                />
+              </span>
               <ArrowRight
                 aria-hidden="true"
                 className="size-8 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-3"
               />
-            </UnderlineLink>
+            </TransitionLink>
           </article>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, EASE, DURATION } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { RevealImage } from "@/components/ui/RevealImage";
@@ -37,8 +37,8 @@ export function Intro() {
           {
             yPercent: 0,
             autoAlpha: 1,
-            duration: 1.1,
-            ease: "power3.out",
+            duration: DURATION.slow,
+            ease: EASE.out,
             scrollTrigger: {
               trigger: line,
               start: "top 88%",

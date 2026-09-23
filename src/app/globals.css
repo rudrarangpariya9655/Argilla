@@ -132,8 +132,9 @@
   .display-hero {
     font-family: var(--font-display);
     /* Capped against height as well as width: three stacked lines must always
-       fit a short laptop viewport without overflowing the hero. */
-    font-size: clamp(3rem, min(13.5vw, 19vh), 14rem);
+       fit a short laptop viewport without overflowing the hero. Phones get a
+       larger share of the width, where 13.5vw left the claim looking timid. */
+    font-size: clamp(3.25rem, min(17vw, 19vh), 14rem);
     line-height: 0.86;
     letter-spacing: -0.035em;
   }
@@ -228,6 +229,16 @@
 
   .js-anim [data-anim="mask"] {
     clip-path: inset(0 0 100% 0);
+  }
+
+  .js-anim [data-anim="mask-left"] {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  /* Cards and framed media: a shorter rise with a barely-there settle. */
+  .js-anim [data-anim="rise"] {
+    opacity: 0;
+    transform: translate3d(0, 2.25rem, 0) scale(0.985);
   }
 
   .js-anim [data-anim="line"] {

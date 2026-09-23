@@ -82,10 +82,18 @@ content editor would want to change.
 
 ## How the motion system works
 
+**One set of motion tokens.** `src/lib/gsap.ts` exports the easing curves,
+durations and travel distances every animation uses. Sections differ in what
+they animate, never in how it feels.
+
 **Reveal on scroll.** Sections wrap content in `<Reveal>` and tag elements with
-`data-anim="fade-up" | "fade" | "mask" | "line"`. `Reveal` builds one paused
-GSAP timeline per region and plays it from a single ScrollTrigger, so the page
-has a handful of triggers rather than one per element.
+`data-anim`: `fade-up`, `fade`, `mask`, `mask-left`, `line` or `rise` (the
+card entrance). An element can hold its own start with `data-anim-delay`.
+`Reveal` builds one paused GSAP timeline per region and plays it from a single
+ScrollTrigger, so the page has a handful of triggers rather than one per
+element. Anything that is genuinely a different behaviour — the pinned
+showcase, the sticky craft narrative, the counters, the preloader — stays
+bespoke rather than being forced through the same primitive.
 
 **Hidden start states live in CSS, gated on a class.** A tiny inline script adds
 `js` and (unless the visitor prefers reduced motion) `js-anim` to `<html>`
@@ -100,7 +108,9 @@ every GSAP setup short-circuits to a static end state.
 
 **Nothing important depends on an animation finishing.** Page navigation fires
 from a timer rather than a tween callback, and the transition lock releases when
-the route lands. A throttled ticker in a background tab can't swallow a click.
+the route lands. The preloader has a hard time cap on the same basis: it is a
+flourish, never a gate. A throttled ticker in a background tab can't swallow a
+click or strand a visitor behind an overlay.
 
 **Cleanup.** Every effect uses `gsap.context()` and reverts on unmount;
 `matchMedia` scopes are reverted; timers are cleared.
@@ -120,7 +130,12 @@ Not a shrunken desktop:
 - The craft story uses a sticky image column on desktop and inline images on
   smaller screens.
 - The custom cursor only mounts for fine pointers.
-- Parallax is reduced and magnetic buttons are disabled on touch.
+- Parallax travel is halved on tablets and switched off below 640px: a
+  scrub-driven transform on a large decoded image is cheap on a desktop GPU and
+  the most expensive thing on the page on a phone.
+- Product cards reveal finish and format on hover where there is a pointer, and
+  print the same two facts under the title where there is not.
+- Magnetic buttons are disabled on touch.
 - Verified for horizontal overflow at 375, 768 and 1440 across every route.
 
 ## Accessibility

@@ -2,16 +2,31 @@
 
 import { useRef, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { gsap, ScrollTrigger, ENTER } from "@/lib/gsap";
+import { gsap, ScrollTrigger, ENTER, EASE, DURATION } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 import { TransitionLink } from "./TransitionLink";
 
 /**
- * Wraps a region and reveals every `[data-anim]` descendant as it enters view.
- * Sections opt in by adding the attribute rather than each one wiring its own
- * ScrollTrigger, which keeps trigger count low and behaviour consistent.
+ * The site's scroll-reveal system.
+ *
+ * A region is wrapped in `<Reveal>` and its descendants opt in with
+ * `data-anim="..."`. One paused timeline is built per region and played by a
+ * single ScrollTrigger, so a page with a hundred animated elements still has
+ * only a handful of triggers. Every variant draws its duration and easing from
+ * the shared tokens in `lib/gsap`, which is what keeps the whole site feeling
+ * like one piece of motion design rather than a pile of separate effects.
+ *
+ * Variants:
+ *   fade-up    rise and fade in (default)
+ *   fade       opacity only
+ *   mask       clip-path wipe upward, for imagery
+ *   mask-left  clip-path wipe from the left, for wide plates and rules
+ *   line       horizontal rule drawing itself
+ *   rise       fade-up with a slight settle, for cards and framed media
+ *
+ * Any element may also carry `data-anim-delay="0.2"` to hold its own start.
  */
 export function Reveal({
   children,
@@ -43,21 +58,62 @@ export function Reveal({
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         paused: true,
-        defaults: { duration: 1, ease: "power3.out" },
+        defaults: { duration: DURATION.base, ease: EASE.out },
       });
 
       targets.forEach((target, i) => {
         const kind = target.dataset.anim;
-        const at = i * stagger;
+        const own = Number(target.dataset.animDelay ?? NaN);
+        const at = Number.isFinite(own) ? own : i * stagger;
 
-        if (kind === "mask") {
-          tl.to(target, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2 }, at);
-        } else if (kind === "line") {
-          tl.to(target, { scaleX: 1, duration: 1.1, ease: "power2.inOut" }, at);
-        } else if (kind === "fade") {
-          tl.to(target, { autoAlpha: 1 }, at);
-        } else {
-          tl.to(target, { autoAlpha: 1, y: 0 }, at);
+        switch (kind) {
+          case "mask":
+            tl.to(
+              target,
+              {
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: DURATION.reveal,
+                ease: EASE.expo,
+              },
+              at,
+            );
+            break;
+          case "mask-left":
+            tl.to(
+              target,
+              {
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: DURATION.reveal,
+                ease: EASE.expo,
+              },
+              at,
+            );
+            break;
+          case "line":
+            tl.to(
+              target,
+              { scaleX: 1, duration: DURATION.slow, ease: "power2.inOut" },
+              at,
+            );
+            break;
+          case "fade":
+            tl.to(target, { autoAlpha: 1 }, at);
+            break;
+          case "rise":
+            tl.to(
+              target,
+              {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                duration: DURATION.slow,
+                ease: EASE.expo,
+              },
+              at,
+            );
+            break;
+          default:
+            tl.to(target, { autoAlpha: 1, y: 0 }, at);
         }
       });
 
@@ -142,7 +198,10 @@ export function UnderlineLink({
     </>
   );
 
-  const cls = cn("group inline-flex items-center gap-1.5", className);
+  // `py-2` is deliberate: an underline link is a line of small type, which
+  // without padding gives a 13px tap target. The padding provides the vertical
+  // rhythm in the lists these appear in, so no gap is lost.
+  const cls = cn("group inline-flex items-center gap-1.5 py-2", className);
 
   if (external) {
     return (

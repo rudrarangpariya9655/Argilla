@@ -122,7 +122,10 @@ export function Navbar() {
               href="/"
               aria-label={`${SITE.name} — home`}
               className={cn(
-                "display-sm inline-block leading-none tracking-[0.1em] transition-colors duration-500",
+                // Vertical padding cancelled by a matching negative margin:
+                // the tap area reaches a comfortable size without changing the
+                // bar's height or the logo's optical position.
+                "display-sm -my-3 inline-block py-3 leading-none tracking-[0.1em] transition-colors duration-500",
                 onDark ? "text-porcelain" : "text-charcoal",
               )}
             >
@@ -141,15 +144,17 @@ export function Navbar() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "group label relative inline-block py-1 transition-colors duration-500",
-                        onDark ? "text-porcelain/80 hover:text-porcelain" : "text-charcoal",
+                        "group label relative inline-block py-2.5 transition-colors duration-500",
+                        onDark
+                          ? "text-porcelain/75 hover:text-porcelain"
+                          : "text-charcoal/80 hover:text-charcoal",
                       )}
                     >
                       {item.label}
                       <span
                         aria-hidden="true"
                         className={cn(
-                          "absolute -bottom-0.5 left-0 h-px w-full origin-right bg-current transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:origin-left group-hover:scale-x-100 group-focus-visible:origin-left group-focus-visible:scale-x-100",
+                          "absolute bottom-1.5 left-0 h-px w-full origin-right bg-current transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:origin-left group-hover:scale-x-100 group-focus-visible:origin-left group-focus-visible:scale-x-100",
                           active ? "scale-x-100" : "scale-x-0",
                         )}
                       />
@@ -167,7 +172,7 @@ export function Navbar() {
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search the site"
                 className={cn(
-                  "group flex items-center gap-2 py-1 transition-colors duration-500",
+                  "group -m-3 flex items-center gap-2 p-3 transition-colors duration-500",
                   onDark ? "text-porcelain" : "text-charcoal",
                 )}
               >
@@ -208,7 +213,7 @@ function MenuToggle({
         aria-expanded={open}
         aria-controls="argilla-menu"
         className={cn(
-          "flex items-center gap-3 py-1 transition-colors duration-500",
+          "-my-3 flex items-center gap-3 py-3 transition-colors duration-500",
           onDark ? "text-porcelain" : "text-charcoal",
         )}
       >

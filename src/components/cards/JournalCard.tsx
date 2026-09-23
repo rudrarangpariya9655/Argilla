@@ -22,7 +22,7 @@ export function JournalCard({
   featured = false,
 }: Props) {
   return (
-    <article data-anim="fade-up" className={cn("group", className)}>
+    <article data-anim="rise" className={cn("group", className)}>
       <TransitionLink
         href={`/journal/${article.slug}`}
         data-cursor="view"
@@ -42,7 +42,7 @@ export function JournalCard({
             quality={80}
             placeholder="blur"
             blurDataURL={BLUR}
-            className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+            className="object-cover transition-transform duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
           />
           {/* Category chip rises into place on hover. */}
           <span className="label absolute left-4 top-4 bg-porcelain/90 px-3 py-2 text-charcoal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5">
@@ -61,7 +61,7 @@ export function JournalCard({
 
           <h3
             className={cn(
-              "text-charcoal transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1",
+              "text-charcoal transition-transform duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5",
               featured ? "display-md" : "display-sm",
             )}
           >

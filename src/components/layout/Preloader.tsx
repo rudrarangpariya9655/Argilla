@@ -10,6 +10,12 @@ import { lockScroll, unlockScroll } from "./SmoothScroll";
 const VESSEL_PATH =
   "M100 14 C62 14 46 46 46 88 C46 122 26 142 26 174 C26 208 59 230 100 230 C141 230 174 208 174 174 C174 142 154 122 154 88 C154 46 138 14 100 14 Z";
 
+/**
+ * Hard ceiling on the intro, in milliseconds. The choreography below runs a
+ * little under this; the guard only matters when frames are not being served.
+ */
+const MAX_DURATION = 3200;
+
 type Props = {
   onDone: () => void;
   /** Evaluated on the client only, so the server render stays deterministic. */
@@ -45,12 +51,22 @@ export function Preloader({ onDone, skip }: Props) {
 
     lockScroll();
 
+    let done = false;
+    /** Idempotent: whichever of the timeline or the guard gets there first. */
+    const finish = () => {
+      if (done) return;
+      done = true;
+      window.clearTimeout(guard);
+      setGone(true);
+      unlockScroll();
+      onDone();
+    };
+
+    // The intro is a flourish, never a gate. If the ticker is throttled — a
+    // backgrounded tab, a device under load — this releases the page anyway.
+    const guard = window.setTimeout(finish, MAX_DURATION);
+
     const ctx = gsap.context(() => {
-      const finish = () => {
-        setGone(true);
-        unlockScroll();
-        onDone();
-      };
 
       const progress = { value: 0 };
       const outline = outlineRef.current;
@@ -68,16 +84,29 @@ export function Preloader({ onDone, skip }: Props) {
         onComplete: finish,
       });
 
+      const letters = wordRef.current?.querySelectorAll("[data-letter]") ?? [];
+
       tl.set(root, { autoAlpha: 1 })
-        // Vessel draws itself.
-        .to(outline, { strokeDashoffset: 0, duration: 1.1, ease: "power1.inOut" }, 0)
-        .from(metaRef.current, { autoAlpha: 0, duration: 0.6 }, 0.15)
-        // Counter and clay fill rise together.
+        // 1. The brand arrives first: ARGILLA rises letter by letter.
+        .from(letters, {
+          autoAlpha: 0,
+          yPercent: 105,
+          duration: 0.68,
+          stagger: 0.035,
+          ease: "power3.out",
+        })
+        .from(metaRef.current, { autoAlpha: 0, duration: 0.5 }, 0.12)
+        // 2. Then the vessel draws and fills as the count runs.
+        .to(
+          outline,
+          { strokeDashoffset: 0, duration: 1.05, ease: "power1.inOut" },
+          0.22,
+        )
         .to(
           progress,
           {
             value: 100,
-            duration: 1.75,
+            duration: 1.25,
             ease: "power1.inOut",
             onUpdate: () => {
               const v = Math.round(progress.value);
@@ -85,51 +114,49 @@ export function Preloader({ onDone, skip }: Props) {
                 counterRef.current.textContent = String(v).padStart(3, "0");
               }
               if (fillRef.current) {
-                // Rect is 244 tall in a 0–244 viewBox band; fill from the base.
+                // Rect spans a 0–244 viewBox band; the clay fills from the base.
                 const h = (v / 100) * 244;
                 fillRef.current.setAttribute("y", String(244 - h));
                 fillRef.current.setAttribute("height", String(h));
               }
             },
           },
-          0.1,
+          0.3,
         )
-        .to(barRef.current, { scaleX: 1, duration: 1.75, ease: "power1.inOut" }, 0.1)
-        // Brand identity resolves as the vessel completes.
-        .from(
-          wordRef.current?.querySelectorAll("[data-letter]") ?? [],
-          { autoAlpha: 0, yPercent: 60, duration: 0.6, stagger: 0.04 },
-          1.15,
-        )
-        .to({}, { duration: 0.22 })
-        // Cinematic exit: contents lift away, then the panel wipes up.
+        .to(barRef.current, { scaleX: 1, duration: 1.25, ease: "power1.inOut" }, 0.3)
+        // A beat at 100% before anything moves.
+        .to({}, { duration: 0.16 })
+        // 3. Reveal: the panel's contents lift away, then it wipes upward to
+        //    hand over to the hero, whose own entrance starts on `onDone`.
+        .addLabel("exit")
         .to(
           [metaRef.current, barRef.current?.parentElement ?? null],
-          { autoAlpha: 0, duration: 0.35 },
+          { autoAlpha: 0, duration: 0.3 },
           "exit",
         )
         .to(
           ".preloader-mark",
-          { yPercent: -18, autoAlpha: 0, duration: 0.7, ease: "power3.inOut" },
+          { yPercent: -14, autoAlpha: 0, duration: 0.55, ease: "power3.inOut" },
           "exit",
         )
         .to(
           wordRef.current,
-          { yPercent: -40, autoAlpha: 0, duration: 0.75, ease: "power3.inOut" },
-          "exit+=0.06",
+          { yPercent: -110, duration: 0.7, ease: "power3.inOut" },
+          "exit+=0.05",
         )
         .to(
           root,
           {
             clipPath: "inset(0% 0% 100% 0%)",
-            duration: 1,
+            duration: 0.9,
             ease: "expo.inOut",
           },
-          "exit+=0.18",
+          "exit+=0.16",
         );
     }, rootRef);
 
     return () => {
+      window.clearTimeout(guard);
       ctx.revert();
       unlockScroll();
     };

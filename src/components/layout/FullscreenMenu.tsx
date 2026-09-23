@@ -261,7 +261,7 @@ export function FullscreenMenu({
         </div>
 
         <div className="mt-10 flex flex-col gap-8 border-t border-porcelain/12 pt-8 md:flex-row md:items-end md:justify-between">
-          <div data-menu-detail className="flex flex-wrap gap-x-8 gap-y-3">
+          <div data-menu-detail className="-my-2 flex flex-wrap gap-x-8">
             {SECONDARY_NAV.map((item) => (
               <UnderlineLink
                 key={item.href}
@@ -273,7 +273,7 @@ export function FullscreenMenu({
             ))}
           </div>
 
-          <div data-menu-detail className="flex flex-wrap gap-x-8 gap-y-3">
+          <div data-menu-detail className="-my-2 flex flex-wrap gap-x-8">
             {SITE.social.map((social) => (
               <UnderlineLink
                 key={social.label}

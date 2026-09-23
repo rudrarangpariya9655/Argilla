@@ -179,7 +179,7 @@ export function SearchOverlay({
             <button
               type="button"
               onClick={onClose}
-              className="label flex shrink-0 items-center gap-2 text-umber transition-colors hover:text-charcoal"
+              className="label -m-3 flex shrink-0 items-center gap-2 p-3 text-umber transition-colors hover:text-charcoal"
             >
               <span className="hidden sm:inline">Close</span>
               <X aria-hidden="true" className="size-4" />

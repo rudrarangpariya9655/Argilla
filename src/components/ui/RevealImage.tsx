@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { gsap, ENTER } from "@/lib/gsap";
+import { gsap, ENTER, EASE, DURATION } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { BLUR, src, type Img } from "@/lib/images";
@@ -48,6 +48,8 @@ export function RevealImage({
     if (!wrap || !inner) return;
     if (prefersReducedMotion()) return;
 
+    const mm = gsap.matchMedia();
+
     const ctx = gsap.context(() => {
       if (!noReveal) {
         gsap.fromTo(
@@ -55,43 +57,61 @@ export function RevealImage({
           { clipPath: "inset(0% 0% 100% 0%)" },
           {
             clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.25,
-            ease: "power3.out",
+            duration: DURATION.reveal,
+            ease: EASE.expo,
             scrollTrigger: { trigger: wrap, start: ENTER, once: true },
           },
         );
 
+        // A restrained settle rather than a zoom: the image should look as
+        // though it arrived, not as though it moved.
         gsap.fromTo(
           inner,
-          { scale: 1.16 },
+          { scale: 1.07 },
           {
             scale: 1,
-            duration: 1.6,
-            ease: "power3.out",
+            duration: 1.7,
+            ease: EASE.expo,
             scrollTrigger: { trigger: wrap, start: ENTER, once: true },
           },
         );
       }
 
       if (parallax !== 0) {
-        gsap.fromTo(
-          inner,
-          { yPercent: -parallax / 2 },
+        // Parallax is a scrub-driven transform on a large decoded image: cheap
+        // on a desktop GPU, the most expensive thing on the page on a phone.
+        // Tablets get half the travel, phones none.
+        mm.add(
           {
-            yPercent: parallax / 2,
-            ease: "none",
-            scrollTrigger: {
-              trigger: wrap,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
+            wide: "(min-width: 1024px)",
+            mid: "(min-width: 640px) and (max-width: 1023.98px)",
+          },
+          (context) => {
+            const { wide } = context.conditions as { wide: boolean };
+            const travel = wide ? parallax : parallax * 0.5;
+            gsap.fromTo(
+              inner,
+              { yPercent: -travel / 2 },
+              {
+                yPercent: travel / 2,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: wrap,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              },
+            );
           },
         );
       }
     }, wrapRef);
 
-    return () => ctx.revert();
+    return () => {
+      mm.revert();
+      ctx.revert();
+    };
   }, [parallax, noReveal]);
 
   return (

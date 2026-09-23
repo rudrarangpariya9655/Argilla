@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { gsap, EASE } from "@/lib/gsap";
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
+import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { TEXTURES } from "@/lib/data/craft";
 import { BLUR, src } from "@/lib/images";
 import { cn } from "@/lib/utils";
@@ -15,7 +18,53 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
  */
 export function TextureSelector() {
   const [active, setActive] = useState(0);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
   const texture = TEXTURES[active];
+
+  // The panel re-reads on every change. Animating the new copy in — rather
+  // than swapping it — is what separates a configurator from a radio group.
+  useIsomorphicLayoutEffect(() => {
+    const panel = panelRef.current;
+    if (!panel || prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        "[data-texture-swap]",
+        { autoAlpha: 0, y: 14 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.55,
+          ease: EASE.out,
+          stagger: 0.06,
+          overwrite: "auto",
+        },
+      );
+
+      // The index counts rather than cuts.
+      const counter = counterRef.current;
+      if (counter) {
+        const from = Number(counter.dataset.shown ?? 1);
+        const to = active + 1;
+        const proxy = { value: from };
+        gsap.to(proxy, {
+          value: to,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: "auto",
+          onUpdate: () => {
+            counter.textContent = String(Math.round(proxy.value)).padStart(2, "0");
+          },
+          onComplete: () => {
+            counter.dataset.shown = String(to);
+          },
+        });
+      }
+    }, panelRef);
+
+    return () => ctx.revert();
+  }, [active]);
 
   return (
     <section className="section-y bg-ivory" aria-labelledby="textures-heading">
@@ -116,32 +165,43 @@ export function TextureSelector() {
 
           {/* Detail panel. */}
           <div
+            ref={panelRef}
             role="tabpanel"
             id="texture-panel"
             aria-labelledby={`texture-tab-${active}`}
             className="flex flex-col justify-between gap-8 border-t border-umber/20 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0"
           >
             <div className="flex flex-col gap-5">
-              <span className="label text-terracotta">
-                {String(active + 1).padStart(2, "0")} /{" "}
-                {String(TEXTURES.length).padStart(2, "0")}
+              <span className="label text-terracotta tabular-nums">
+                <span ref={counterRef} data-shown="1">
+                  01
+                </span>{" "}
+                / {String(TEXTURES.length).padStart(2, "0")}
               </span>
-              <h3 key={texture.name} className="display-md text-charcoal">
+              {/* Fixed minimum heights keep the panel from resizing as the
+                  copy changes, so nothing below it jumps. */}
+              <h3
+                data-texture-swap
+                className="display-md min-h-[1.1em] text-charcoal"
+              >
                 {texture.name}
               </h3>
-              <p className="body-base max-w-md text-umber">
+              <p
+                data-texture-swap
+                className="body-base min-h-[5.25rem] max-w-md text-umber"
+              >
                 {texture.description}
               </p>
             </div>
 
             <dl className="grid gap-6 sm:grid-cols-2">
-              <div className="flex flex-col gap-2">
+              <div data-texture-swap className="flex flex-col gap-2">
                 <dt className="label text-umber/50">Slip rating</dt>
                 <dd className="body-base text-charcoal">{texture.finish}</dd>
               </div>
-              <div className="flex flex-col gap-2">
+              <div data-texture-swap className="flex flex-col gap-2">
                 <dt className="label text-umber/50">Available sizes</dt>
-                <dd className="body-base text-charcoal">
+                <dd className="body-base min-h-[5.25rem] text-charcoal">
                   {texture.sizes.map((size) => (
                     <span key={size} className="block">
                       {size} mm
