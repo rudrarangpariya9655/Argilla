@@ -1,0 +1,330 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   ARGILLA — Design tokens
+   A warm mineral palette: ivory, sand, clay, terracotta, stone, charcoal.
+   ========================================================================== */
+
+@theme {
+  /* Surfaces */
+  --color-porcelain: #fbf9f5;
+  --color-ivory: #f4efe7;
+  --color-sand: #e6dccd;
+  --color-clay: #cdb59b;
+  --color-biscuit: #b99a7c;
+
+  /* Accent */
+  --color-terracotta: #a85436;
+  --color-ochre: #c07b41;
+
+  /* Neutrals */
+  --color-stone: #968d82;
+  --color-umber: #5d5148;
+  --color-charcoal: #26211d;
+  --color-ink: #16120f;
+
+  /* Type */
+  --font-display: var(--font-instrument-serif), "Times New Roman", serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Rhythm */
+  --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --spacing-section: clamp(5rem, 12vw, 11rem);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: color-mix(in srgb, var(--color-umber) 16%, transparent);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  /* Lenis drives scrolling; native smooth-scroll would fight it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  body {
+    background-color: var(--color-porcelain);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-terracotta);
+    color: var(--color-porcelain);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Only hide the system cursor once the custom one is actually mounted. */
+  body[data-custom-cursor="on"],
+  body[data-custom-cursor="on"] a,
+  body[data-custom-cursor="on"] button,
+  body[data-custom-cursor="on"] [role="button"] {
+    cursor: none;
+  }
+
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Typography utilities
+   -------------------------------------------------------------------------- */
+
+@layer components {
+  .display-hero {
+    font-family: var(--font-display);
+    /* Capped against height as well as width: three stacked lines must always
+       fit a short laptop viewport without overflowing the hero. */
+    font-size: clamp(3rem, min(13.5vw, 19vh), 14rem);
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 9vw, 8.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 6vw, 5.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.6vw, 3.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  .display-sm {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .body-lg {
+    font-size: clamp(1.0625rem, 1.35vw, 1.3125rem);
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+  }
+
+  .body-base {
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .body-sm {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* Layout helpers */
+  .shell {
+    width: 100%;
+    padding-inline: var(--spacing-gutter);
+    margin-inline: auto;
+    max-width: 120rem;
+  }
+
+  .section-y {
+    padding-block: var(--spacing-section);
+  }
+
+  .rule {
+    height: 1px;
+    width: 100%;
+    background-color: color-mix(in srgb, var(--color-umber) 18%, transparent);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animation primitives
+   Elements start hidden ONLY when JS can animate them back in — the `.js-anim`
+   class is set on <html> by the motion bootstrapper, so no-JS users see content.
+   -------------------------------------------------------------------------- */
+
+@layer utilities {
+  .js-anim [data-anim="fade-up"] {
+    opacity: 0;
+    transform: translate3d(0, 2rem, 0);
+  }
+
+  .js-anim [data-anim="fade"] {
+    opacity: 0;
+  }
+
+  .js-anim [data-anim="mask"] {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .js-anim [data-anim="line"] {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .js-anim [data-split] {
+    opacity: 0;
+  }
+
+  /* Chrome elements whose entrance is played by GSAP. Gating these on
+     `.js-anim` means a visitor without JavaScript — or one whose bundle fails —
+     still gets a usable navigation bar and a readable page header, rather than
+     an invisible one. */
+  .js-anim [data-js-hidden],
+  .js-anim [data-page-fade] {
+    opacity: 0;
+  }
+
+  /* No JavaScript means no preloader to dismiss it, and a transparent
+     full-screen overlay would block every click on the page underneath. */
+  html:not(.js) [data-preloader] {
+    display: none;
+  }
+
+  /* Reduced motion: never hide anything. */
+  @media (prefers-reduced-motion: reduce) {
+    .js-anim [data-anim],
+    .js-anim [data-split] {
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide native scrollbars on drag galleries without losing scrollability. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes
+   -------------------------------------------------------------------------- */
+
+@keyframes argilla-scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0.5rem);
+    opacity: 0.4;
+  }
+}
+
+@keyframes argilla-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes argilla-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
