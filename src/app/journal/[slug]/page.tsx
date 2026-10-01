@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 import { ARTICLES, articleBySlug } from "@/lib/data/journal";
 import { SITE } from "@/lib/data/site";
 import { src } from "@/lib/images";
@@ -21,7 +20,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const article = articleBySlug(slug);
-  if (!article) return { title: "Article not found" };
+  if (!article) notFound();
 
   return {
     title: article.title,
@@ -57,18 +56,18 @@ export default async function ArticlePage(props: PageProps<"/journal/[slug]">) {
     headline: article.title,
     description: article.excerpt,
     datePublished: article.date,
-    author: { "@type": "Person", name: article.author },
+    author: { "@type": "Organization", name: "ARGILLA portfolio concept" },
     publisher: { "@type": "Organization", name: SITE.legalName },
     image: [src(article.cover, 1200)],
     articleSection: article.category,
+    mainEntityOfPage: `${SITE.url}/journal/${article.slug}`,
   };
 
   return (
     <>
-      <Script
+      <script
         id={`article-jsonld-${article.slug}`}
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
@@ -135,7 +134,7 @@ export default async function ArticlePage(props: PageProps<"/journal/[slug]">) {
                       className="aspect-[3/2] w-full"
                       width={1200}
                     />
-                    <figcaption className="body-sm text-umber/60">
+                    <figcaption className="body-sm text-umber/85">
                       {block.image.alt}
                     </figcaption>
                   </figure>
@@ -146,11 +145,11 @@ export default async function ArticlePage(props: PageProps<"/journal/[slug]">) {
             <Reveal className="mt-8 flex flex-col gap-6">
               <Rule />
               <div data-anim="fade-up" className="flex flex-col gap-2">
-                <span className="label text-umber/50">Written by</span>
+                <span className="label text-umber/85">Written by</span>
                 <span className="display-sm text-charcoal">
                   {article.author}
                 </span>
-                <span className="body-sm text-umber/70">
+                <span className="body-sm text-umber/85">
                   Demo byline for this placeholder article.
                 </span>
               </div>
@@ -161,14 +160,14 @@ export default async function ArticlePage(props: PageProps<"/journal/[slug]">) {
 
       {/* Subscribe. */}
       <section className="section-y bg-ivory" aria-labelledby="article-subscribe">
-        <div className="shell grid gap-10 lg:grid-cols-2 lg:gap-20">
+        <div className="shell grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <h2
               id="article-subscribe"
               data-anim="fade-up"
               className="display-md max-w-md text-charcoal"
             >
-              More like this, once a month.
+              A journal of material and making.
             </h2>
           </Reveal>
           <Reveal className="flex items-end">

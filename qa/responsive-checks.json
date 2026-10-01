@@ -1,0 +1,2872 @@
+[
+  {
+    "path": "/",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/craft",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/craft",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/craft",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/craft",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/craft",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/craft",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/craft",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/craft",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/craft",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/craft",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/about",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/about",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/about",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/about",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/about",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/about",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/about",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/about",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/about",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/about",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/sustainability",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/sustainability",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/sustainability",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/sustainability",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/sustainability",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/sustainability",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/sustainability",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/sustainability",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/sustainability",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/sustainability",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/contact",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/contact",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/contact",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/contact",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/contact",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/contact",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/contact",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/contact",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/contact",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/contact",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/site-notes",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/site-notes",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/site-notes",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/site-notes",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/site-notes",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/site-notes",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/site-notes",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/site-notes",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/site-notes",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/site-notes",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/earth",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/earth",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/earth",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/earth",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/earth",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/earth",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/earth",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/earth",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/earth",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/earth",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/stone",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/stone",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/stone",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/stone",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/stone",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/stone",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/stone",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/stone",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/stone",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/stone",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/terracotta",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/marble",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/marble",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/marble",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/marble",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/marble",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/marble",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/marble",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/marble",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/marble",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/marble",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/minimal",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/collections/artisan",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/millstone-field",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/peat-monolith",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/basalt-slab",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/travertine-warm",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/sienna-extrude",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/amber-field",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/bianco-vena",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/nero-profondo",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/chalk-continuum",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/graphite-continuum",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/oatmeal-vessel",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/ash-bowl",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/products/iron-carafe",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/casa-fornace",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/hotel-calcare",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/atelier-nord",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/villa-argilla",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/bagno-sorgente",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/projects/cucina-bruna",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/why-unglazed-is-harder",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/large-format-detailing",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/reading-a-glaze",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/colour-of-a-room",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/inside-the-kiln",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 320,
+    "client": 305,
+    "clipped": [],
+    "doc": 305
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 375,
+    "client": 360,
+    "clipped": [],
+    "doc": 360
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 390,
+    "client": 375,
+    "clipped": [],
+    "doc": 375
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 430,
+    "client": 415,
+    "clipped": [],
+    "doc": 415
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 768,
+    "client": 753,
+    "clipped": [],
+    "doc": 753
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 1024,
+    "client": 1009,
+    "clipped": [],
+    "doc": 1009
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 1280,
+    "client": 1265,
+    "clipped": [],
+    "doc": 1265
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 1440,
+    "client": 1425,
+    "clipped": [],
+    "doc": 1425
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 1920,
+    "client": 1905,
+    "clipped": [],
+    "doc": 1905
+  },
+  {
+    "path": "/journal/specifying-for-forty-years",
+    "width": 2560,
+    "client": 2545,
+    "clipped": [],
+    "doc": 2545
+  }
+]

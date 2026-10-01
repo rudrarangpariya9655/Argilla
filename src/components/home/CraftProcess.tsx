@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -104,7 +104,8 @@ export function CraftProcess() {
                   <Image
                     key={stage.index}
                     src={src(stage.image, 1200)}
-                    alt={stage.image.alt}
+                    alt={active === i ? stage.image.alt : ""}
+                    aria-hidden={active !== i}
                     fill
                     sizes="(max-width: 1024px) 0px, 42vw"
                     quality={80}
@@ -129,10 +130,10 @@ export function CraftProcess() {
                   className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/55 to-transparent"
                 />
                 <span className="absolute left-6 top-6 flex items-baseline gap-3 text-porcelain">
-                  <span className="relative block h-[1.05em] overflow-hidden">
+                  <span className="display-md relative block h-[1.05em] overflow-hidden" aria-hidden="true">
                     <span
                       className="flex flex-col transition-transform duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-                      style={{ transform: `translateY(-${active * 100}%)` }}
+                      style={{ transform: `translateY(-${active * (100 / CRAFT_STAGES.length)}%)` }}
                     >
                       {CRAFT_STAGES.map((s) => (
                         <span
@@ -165,7 +166,7 @@ export function CraftProcess() {
                     <span
                       className={cn(
                         "label flex items-center gap-2.5 tabular-nums transition-colors duration-500",
-                        active === i ? "text-terracotta" : "text-umber/40",
+                        active === i ? "text-terracotta" : "text-umber/85",
                       )}
                     >
                       <span
@@ -177,7 +178,7 @@ export function CraftProcess() {
                       />
                       {stage.index}
                     </span>
-                    <span className="label text-umber/50">
+                    <span className="label text-umber/85">
                       {stage.subtitle}
                     </span>
                   </div>
@@ -210,7 +211,7 @@ export function CraftProcess() {
                   <dl className="flex flex-wrap gap-x-10 gap-y-3 pt-2">
                     {stage.detail.map((d) => (
                       <div key={d.label} data-anim="fade" className="flex flex-col gap-1">
-                        <dt className="label text-umber/45">{d.label}</dt>
+                        <dt className="label text-umber/85">{d.label}</dt>
                         <dd className="body-sm text-charcoal">{d.value}</dd>
                       </div>
                     ))}

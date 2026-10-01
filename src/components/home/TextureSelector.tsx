@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef, useState } from "react";
 import { gsap, EASE } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -10,16 +10,15 @@ import { BLUR, src } from "@/lib/images";
 import { cn } from "@/lib/utils";
 import { Eyebrow, Reveal } from "@/components/ui/Primitives";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /**
- * "Find Your Surface" — a tactile sampler. Hovering or focusing a swatch brings
- * it forward and writes its detail into the panel; keyboard users get the same
- * result because the swatches are real buttons in a tablist.
+ * "Find Your Surface" — click or use the keyboard to compare finish studies.
  */
 export function TextureSelector() {
+  const horizontal = useMediaQuery("(min-width: 640px)");
   const [active, setActive] = useState(0);
   const panelRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
   const texture = TEXTURES[active];
 
   // The panel re-reads on every change. Animating the new copy in — rather
@@ -35,32 +34,13 @@ export function TextureSelector() {
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.55,
+          duration: 0.35,
           ease: EASE.out,
           stagger: 0.06,
           overwrite: "auto",
         },
       );
 
-      // The index counts rather than cuts.
-      const counter = counterRef.current;
-      if (counter) {
-        const from = Number(counter.dataset.shown ?? 1);
-        const to = active + 1;
-        const proxy = { value: from };
-        gsap.to(proxy, {
-          value: to,
-          duration: 0.4,
-          ease: "power2.out",
-          overwrite: "auto",
-          onUpdate: () => {
-            counter.textContent = String(Math.round(proxy.value)).padStart(2, "0");
-          },
-          onComplete: () => {
-            counter.dataset.shown = String(to);
-          },
-        });
-      }
     }, panelRef);
 
     return () => ctx.revert();
@@ -81,8 +61,8 @@ export function TextureSelector() {
             </h2>
           </div>
           <p data-anim="fade-up" className="body-base max-w-xs text-umber">
-            Five finishes, each with its own slip rating and format range.
-            Samples go out in 100mm squares.
+            Explore five finishes, with illustrative ratings and formats
+            to help shape your project brief.
           </p>
         </Reveal>
 
@@ -91,7 +71,7 @@ export function TextureSelector() {
           <div
             role="tablist"
             aria-label="Ceramic finishes"
-            aria-orientation="horizontal"
+            aria-orientation={horizontal ? "horizontal" : "vertical"}
             className="flex flex-col gap-3 sm:flex-row sm:gap-4"
           >
             {TEXTURES.map((item, i) => {
@@ -105,9 +85,14 @@ export function TextureSelector() {
                   aria-controls="texture-panel"
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setActive(i)}
-                  onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   onKeyDown={(event) => {
+                    if (event.key === "Home" || event.key === "End") {
+                      event.preventDefault();
+                      const next = event.key === "Home" ? 0 : TEXTURES.length - 1;
+                      setActive(next);
+                      document.getElementById(`texture-tab-${next}`)?.focus();
+                    }
                     if (event.key === "ArrowRight" || event.key === "ArrowDown") {
                       event.preventDefault();
                       const next = (i + 1) % TEXTURES.length;
@@ -122,8 +107,8 @@ export function TextureSelector() {
                     }
                   }}
                   className={cn(
-                    "group relative overflow-hidden text-left transition-[flex-grow,transform] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
-                    "h-28 w-full sm:h-[52vh] sm:max-h-[30rem]",
+                    "group relative overflow-hidden text-left transition-[flex-grow,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    "h-28 w-full sm:h-[min(52vh,30rem)] sm:min-w-0",
                     selected ? "sm:flex-[2.4]" : "sm:flex-[1]",
                   )}
                 >
@@ -137,7 +122,7 @@ export function TextureSelector() {
                     placeholder="blur"
                     blurDataURL={BLUR}
                     className={cn(
-                      "object-cover transition-[transform,filter] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "object-cover transition-[transform,filter] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
                       selected
                         ? "scale-100 saturate-100"
                         : "scale-105 saturate-[0.55]",
@@ -147,7 +132,7 @@ export function TextureSelector() {
                     aria-hidden="true"
                     className={cn(
                       "absolute inset-0 transition-colors duration-700",
-                      selected ? "bg-ink/10" : "bg-ink/45",
+                      selected ? "bg-gradient-to-t from-ink/70 to-transparent" : "bg-ink/45",
                     )}
                   />
                   <span
@@ -173,8 +158,8 @@ export function TextureSelector() {
           >
             <div className="flex flex-col gap-5">
               <span className="label text-terracotta tabular-nums">
-                <span ref={counterRef} data-shown="1">
-                  01
+                <span>
+                  {String(active + 1).padStart(2, "0")}
                 </span>{" "}
                 / {String(TEXTURES.length).padStart(2, "0")}
               </span>
@@ -196,11 +181,11 @@ export function TextureSelector() {
 
             <dl className="grid gap-6 sm:grid-cols-2">
               <div data-texture-swap className="flex flex-col gap-2">
-                <dt className="label text-umber/50">Slip rating</dt>
+                <dt className="label text-umber/85">Slip rating</dt>
                 <dd className="body-base text-charcoal">{texture.finish}</dd>
               </div>
               <div data-texture-swap className="flex flex-col gap-2">
-                <dt className="label text-umber/50">Available sizes</dt>
+                <dt className="label text-umber/85">Available sizes</dt>
                 <dd className="body-base min-h-[5.25rem] text-charcoal">
                   {texture.sizes.map((size) => (
                     <span key={size} className="block">
@@ -211,7 +196,8 @@ export function TextureSelector() {
               </div>
             </dl>
 
-            <MagneticButton href="/contact?intent=sample">
+            <p className="caption text-umber">Illustrative specifications. Ratings and sizes require verification for a real project.</p>
+            <MagneticButton href={`/contact?intent=sample&finish=${encodeURIComponent(texture.name)}`}>
               Request this sample
             </MagneticButton>
           </div>

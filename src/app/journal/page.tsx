@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "Writing from the Argilla works: material science, large-format detailing, glaze behaviour, specification advice and notes from the kiln floor.",
   alternates: { canonical: "/journal" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Journal — Argilla",
     description:
       "Material, method and the occasional argument about firing curves.",
@@ -32,7 +33,7 @@ export default function JournalPage() {
         meta={[
           { label: "Articles", value: String(ARTICLES.length) },
           { label: "Topics", value: "Material, craft, design" },
-          { label: "Frequency", value: "Roughly monthly" },
+          { label: "Perspective", value: "Illustrative essays" },
         ]}
       />
 
@@ -72,15 +73,15 @@ export default function JournalPage() {
       </section>
 
       <section className="section-y bg-ivory" aria-labelledby="subscribe-heading">
-        <div className="shell grid gap-10 lg:grid-cols-2 lg:gap-20">
+        <div className="shell grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-20">
           <Reveal className="flex flex-col gap-5">
-            <Eyebrow index="02">Subscribe</Eyebrow>
+            <Eyebrow index="02">Journal preview</Eyebrow>
             <h2
               id="subscribe-heading"
               data-anim="fade-up"
               className="display-md max-w-md text-charcoal"
             >
-              One email a month, no product launches.
+              A quieter perspective on material.
             </h2>
           </Reveal>
           <Reveal className="flex items-end">

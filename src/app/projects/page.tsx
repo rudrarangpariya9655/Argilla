@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Residential, hospitality, commercial and architectural projects finished in Argilla ceramic surfaces, from converted kiln houses to forty-two room hotels.",
   alternates: { canonical: "/projects" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Projects — Argilla",
     description:
       "Buildings finished in Argilla ceramic surfaces, across six project types.",

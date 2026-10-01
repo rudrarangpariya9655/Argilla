@@ -1,210 +1,39 @@
 "use client";
 
-import { useRef } from "react";
-import { gsap, ScrollTrigger, EASE, DURATION } from "@/lib/gsap";
-import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
-import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { SITE } from "@/lib/data/site";
 import { Newsletter } from "@/components/forms/Newsletter";
-import { Reveal, UnderlineLink } from "@/components/ui/Primitives";
+import { UnderlineLink } from "@/components/ui/Primitives";
 
 const COLUMNS = [
-  {
-    title: "Explore",
-    links: [
-      { label: "Collections", href: "/collections" },
-      { label: "Products", href: "/products" },
-      { label: "Projects", href: "/projects" },
-      { label: "Journal", href: "/journal" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Craft", href: "/craft" },
-      { label: "Sustainability", href: "/sustainability" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { label: "Downloads", href: "/contact?intent=downloads" },
-      { label: "Samples", href: "/contact?intent=sample" },
-      { label: "FAQs", href: "/contact?intent=faq" },
-      { label: "Trade", href: "/contact?intent=trade" },
-    ],
-  },
+  { title: "Explore", links: [{ label: "Collections", href: "/collections" }, { label: "Surfaces & objects", href: "/products" }, { label: "Projects", href: "/projects" }, { label: "Journal", href: "/journal" }] },
+  { title: "The house", links: [{ label: "Our story", href: "/about" }, { label: "The making", href: "/craft" }, { label: "Responsibility", href: "/sustainability" }, { label: "The concept", href: "/site-notes" }] },
+  { title: "For your project", links: [{ label: "Sample brief", href: "/contact?intent=sample" }, { label: "Trade enquiry", href: "/contact?intent=trade" }, { label: "Common questions", href: "/contact#faq" }, { label: "Contact", href: "/contact" }] },
 ];
 
 export function Footer() {
-  const wordmarkRef = useRef<HTMLDivElement>(null);
-
-  // The giant wordmark rises and settles as the footer comes into view.
-  useIsomorphicLayoutEffect(() => {
-    const el = wordmarkRef.current;
-    if (!el || prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      const letters = el.querySelectorAll<HTMLElement>("[data-mark-letter]");
-      gsap.fromTo(
-        letters,
-        { yPercent: 62, autoAlpha: 0 },
-        {
-          yPercent: 0,
-          autoAlpha: 1,
-          duration: DURATION.slow,
-          ease: EASE.out,
-          stagger: 0.05,
-          scrollTrigger: { trigger: el, start: "top 92%", once: true },
-        },
-      );
-
-      // A slow horizontal drift keeps the mark alive without being noisy.
-      gsap.fromTo(
-        el,
-        { xPercent: -1.5 },
-        {
-          xPercent: 1.5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        },
-      );
-    }, wordmarkRef);
-
-    return () => {
-      ctx.revert();
-      ScrollTrigger.refresh();
-    };
-  }, []);
-
   return (
-    <footer className="relative overflow-hidden bg-ink text-porcelain">
+    <footer id="site-footer" className="relative overflow-hidden bg-ink text-porcelain">
       <div className="shell pt-(--spacing-section)">
-        <Reveal
-          className="grid gap-14 border-b border-porcelain/12 pb-16 lg:grid-cols-[1.2fr_1.8fr]"
-          stagger={0.05}
-          start="top 95%"
-        >
+        <div className="grid gap-16 border-b border-porcelain/20 pb-16 lg:grid-cols-[1.1fr_1.9fr]">
           <div className="flex flex-col gap-6">
-            <span data-anim="fade-up" className="display-md">
-              {SITE.name}
-            </span>
-            <p data-anim="fade-up" className="body-lg max-w-sm text-porcelain/60">
-              Architectural ceramic surfaces and hand-thrown vessels, made in
-              one works since {SITE.founded}.
-            </p>
-            <div data-anim="fade-up">
-              <Newsletter tone="dark" />
-            </div>
+            <span className="display-md">{SITE.name}</span>
+            <p className="body-lg max-w-sm text-porcelain/75">A study in earth, material and spaces that endure.</p>
+            <Newsletter tone="dark" />
           </div>
-
-          <div className="grid gap-10 sm:grid-cols-3">
-            {COLUMNS.map((column) => (
-              <nav key={column.title} aria-label={column.title}>
-                <h2 data-anim="fade" className="label mb-6 text-porcelain/40">
-                  {column.title}
-                </h2>
-                {/* Padding on the links rather than a gap on the list: the
-                    row pitch is unchanged but each target is tall enough to
-                    hit on a phone. */}
-                <ul className="flex flex-col">
-                  {column.links.map((link) => (
-                    <li key={link.label} data-anim="fade-up">
-                      <UnderlineLink
-                        href={link.href}
-                        className="body-base text-porcelain/80 transition-colors hover:text-porcelain"
-                      >
-                        {link.label}
-                      </UnderlineLink>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
+            {COLUMNS.map((column) => <nav key={column.title} aria-label={column.title}><h2 className="label mb-5 text-porcelain/65">{column.title}</h2><ul>{column.links.map((link) => <li key={link.label}><UnderlineLink href={link.href} className="body-sm text-porcelain/85 hover:text-clay">{link.label}</UnderlineLink></li>)}</ul></nav>)}
           </div>
-        </Reveal>
-
-        <Reveal
-          className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4"
-          stagger={0.07}
-          start="top 95%"
-        >
-          <div data-anim="fade-up" className="flex flex-col gap-2">
-            <span className="label text-porcelain/40">Studio</span>
-            <p className="body-sm text-porcelain/70">{SITE.contact.studio}</p>
-          </div>
-          <div data-anim="fade-up" className="flex flex-col gap-2">
-            <span className="label text-porcelain/40">Showroom</span>
-            <p className="body-sm text-porcelain/70">{SITE.contact.showroom}</p>
-          </div>
-          <div data-anim="fade-up" className="flex flex-col gap-2">
-            <span className="label text-porcelain/40">Enquiries</span>
-            <UnderlineLink
-              href={`mailto:${SITE.contact.email}`}
-              external
-              className="body-sm text-porcelain/70 hover:text-porcelain"
-            >
-              {SITE.contact.email}
-            </UnderlineLink>
-            <span className="body-sm text-porcelain/70">{SITE.contact.phone}</span>
-          </div>
-          <div data-anim="fade-up" className="flex flex-col gap-2">
-            <span className="label text-porcelain/40">Follow</span>
-            <ul className="flex flex-col">
-              {SITE.social.map((social) => (
-                <li key={social.label}>
-                  <UnderlineLink
-                    href={social.href}
-                    external
-                    className="body-sm text-porcelain/70 hover:text-porcelain"
-                  >
-                    {social.label}
-                  </UnderlineLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-      </div>
-
-      <div
-        ref={wordmarkRef}
-        aria-hidden="true"
-        className="flex w-full justify-between overflow-hidden px-[2vw] pb-[2vh] pt-4 leading-[0.78]"
-      >
-        {SITE.name.toUpperCase().split("").map((letter, i) => (
-          <span
-            key={`${letter}-${i}`}
-            data-mark-letter
-            className="font-[family-name:var(--font-display)] text-[clamp(3.5rem,13.6vw,15rem)] text-porcelain/90"
-          >
-            {letter}
-          </span>
-        ))}
-      </div>
-
-      <div className="shell flex flex-col gap-3 border-t border-porcelain/12 py-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="label text-porcelain/35">
-          &copy; {new Date().getFullYear()} {SITE.legalName}. Demo site — all
-          content is placeholder.
-        </p>
-        <div className="-my-2 flex flex-wrap gap-x-6">
-          {["Privacy", "Terms", "Cookies"].map((item) => (
-            <UnderlineLink
-              key={item}
-              href="/contact"
-              className="label text-porcelain/35 transition-colors hover:text-porcelain/70"
-            >
-              {item}
-            </UnderlineLink>
-          ))}
+        </div>
+        <div className="flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
+          <p className="caption max-w-xl text-porcelain/70">Independent portfolio concept. ARGILLA is a fictional brand; imagery, project credits, prices and specifications are illustrative. No purchases, sample deliveries or email subscriptions are processed.</p>
+          <a href="/catalogue/all" download className="label flex min-h-11 shrink-0 items-center border-b border-porcelain/40 text-porcelain/85 transition-colors hover:text-clay">Download demo catalogue · TXT ↗</a>
+        </div>
+        <div aria-hidden="true" className="flex justify-between overflow-hidden pb-8 pt-8 font-display text-[clamp(3.5rem,13.6vw,15rem)] leading-[0.9] text-porcelain/90">{SITE.name.toUpperCase().split("").map((letter, i) => <span key={i}>{letter}</span>)}</div>
+        <div className="flex flex-col gap-5 border-t border-porcelain/20 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="caption text-porcelain/70">© {new Date().getFullYear()} ARGILLA — a design concept.</p>
+          <nav aria-label="Site policies" className="flex flex-wrap gap-x-6">
+            {["Privacy", "Terms", "Cookies"].map((item) => <UnderlineLink key={item} href={`/site-notes#${item.toLowerCase()}`} className="label text-porcelain/75 hover:text-porcelain">{item}</UnderlineLink>)}
+          </nav>
         </div>
       </div>
     </footer>

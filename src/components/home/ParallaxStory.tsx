@@ -55,7 +55,7 @@ export function ParallaxStory() {
   return (
     <section
       className="relative overflow-hidden bg-sand py-(--spacing-section)"
-      aria-labelledby="time-heading"
+      aria-label="Crafted by time"
     >
       <div className="shell relative">
         <Reveal className="mb-12">

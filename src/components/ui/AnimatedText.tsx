@@ -75,12 +75,12 @@ export function AnimatedText({
   }, [delay, immediate, play]);
 
   return (
-    <Tag ref={ref} className={className}>
+    <Tag ref={ref} className={className} aria-label={lines.every((line) => typeof line === "string") ? lines.join(" ") : undefined}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.08em]">
           <span
             data-line-inner
-            className={cn("block will-change-transform", lineClassName)}
+            className={cn("block", lineClassName)}
           >
             {line}
           </span>

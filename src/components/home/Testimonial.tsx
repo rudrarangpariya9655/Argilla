@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { BLUR, src } from "@/lib/images";
 import { AnimatedText } from "@/components/ui/AnimatedText";
 import { Reveal } from "@/components/ui/Primitives";
@@ -24,7 +24,7 @@ export function Testimonial() {
   return (
     <section
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink py-(--spacing-section) text-porcelain"
-      aria-labelledby="quote-heading"
+      aria-label="An illustrative designer perspective"
     >
       {/* Portrait sits behind the type on large screens, beside it on small. */}
       <div
@@ -45,9 +45,10 @@ export function Testimonial() {
       </div>
 
       <div className="shell relative z-10">
+        <p className="label mb-10 text-porcelain/75">11 / A designer&apos;s perspective · Illustrative story</p>
         <blockquote className="flex flex-col gap-10">
           <AnimatedText
-            as="h2"
+            as="p"
             lines={QUOTE.lines}
             className="display-xl max-w-5xl text-porcelain"
           />
@@ -69,20 +70,17 @@ export function Testimonial() {
                 <cite className="body-base not-italic text-porcelain">
                   {QUOTE.author}
                 </cite>
-                <span className="label text-porcelain/45">{QUOTE.role}</span>
+                <span className="label text-porcelain/75">{QUOTE.role}</span>
               </span>
             </footer>
 
-            <span data-anim="fade" className="label text-porcelain/35">
+            <span data-anim="fade" className="label text-porcelain/75">
               {QUOTE.project}
             </span>
           </Reveal>
         </blockquote>
       </div>
 
-      <h2 id="quote-heading" className="sr-only">
-        What designers say about working with Argilla
-      </h2>
     </section>
   );
 }

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "Inside the Argilla works: body recipes, pressing, a nineteen-hour firing curve, in-house glazes and the rectifying line that finishes every surface.",
   alternates: { canonical: "/craft" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Craft — Argilla",
     description:
       "How a hillside becomes a finished ceramic surface, in five stages.",

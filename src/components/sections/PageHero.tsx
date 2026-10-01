@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef, type ReactNode } from "react";
 import { gsap } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -65,12 +65,12 @@ export function PageHero({
         tl.fromTo(
           mediaRef.current,
           { clipPath: "inset(14% 8% 14% 8%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.out" },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "expo.out" },
           0,
         ).fromTo(
           imageRef.current,
-          { scale: 1.2 },
-          { scale: 1, duration: 1.7, ease: "expo.out" },
+          { scale: 1.08 },
+          { scale: 1, duration: 1.15, ease: "expo.out" },
           0,
         );
       }
@@ -78,16 +78,16 @@ export function PageHero({
       tl.fromTo(
         "[data-page-line]",
         { yPercent: 112 },
-        { yPercent: 0, duration: 1.05, stagger: 0.08 },
+        { yPercent: 0, duration: 0.75, stagger: 0.08 },
         0.2,
       ).fromTo(
         "[data-page-fade]",
         { autoAlpha: 0, y: 20 },
-        { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.07 },
-        0.6,
+        { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.07 },
+        0.35,
       );
 
-      if (imageRef.current) {
+      if (imageRef.current && window.matchMedia("(min-width: 768px)").matches) {
         gsap.to(imageRef.current, {
           yPercent: 10,
           ease: "none",
@@ -110,8 +110,8 @@ export function PageHero({
       className={cn(
         "relative flex flex-col justify-end overflow-hidden",
         height === "full"
-          ? "h-[100svh] min-h-[34rem]"
-          : "min-h-[72svh] pt-40 sm:min-h-[80svh]",
+          ? "min-h-svh"
+          : "min-h-[60svh] sm:min-h-[65svh]",
         dark ? "bg-ink text-porcelain" : "bg-porcelain text-charcoal",
       )}
     >
@@ -120,16 +120,15 @@ export function PageHero({
       {image ? (
         <>
           <div
-            ref={mediaRef}
+            ref={mediaRef} data-motion-frame
             className="absolute inset-0"
-            style={{ clipPath: "inset(14% 8% 14% 8%)" }}
           >
-            <div ref={imageRef} className="absolute -inset-y-[6%] inset-x-0">
+            <div ref={imageRef} data-motion-frame className="absolute -inset-y-[6%] inset-x-0">
               <Image
                 src={src(image, 2000)}
                 alt={image.alt}
                 fill
-                priority
+                loading="eager"
                 fetchPriority="high"
                 sizes="100vw"
                 quality={80}
@@ -146,7 +145,7 @@ export function PageHero({
         </>
       ) : null}
 
-      <div className="shell relative z-10 flex flex-col gap-8 pb-14 pt-24 sm:pb-20">
+      <div className="shell relative z-10 flex flex-col gap-6 pb-12 pt-32 sm:gap-8 sm:pb-16 lg:pt-40">
         {crumbs?.length ? (
           <nav aria-label="Breadcrumb" data-page-fade>
             <ol className="flex flex-wrap items-center gap-2">
@@ -157,7 +156,7 @@ export function PageHero({
                       aria-hidden="true"
                       className={cn(
                         "label",
-                        dark ? "text-porcelain/30" : "text-umber/35",
+                        dark ? "text-porcelain/75" : "text-umber/85",
                       )}
                     >
                       /
@@ -169,8 +168,8 @@ export function PageHero({
                       className={cn(
                         "label transition-colors",
                         dark
-                          ? "text-porcelain/50 hover:text-porcelain"
-                          : "text-umber/60 hover:text-charcoal",
+                          ? "text-porcelain/75 hover:text-porcelain"
+                          : "text-umber/85 hover:text-charcoal",
                       )}
                     >
                       {crumb.label}
@@ -196,7 +195,7 @@ export function PageHero({
           data-page-fade
           className={cn(
             "label flex items-center gap-3",
-            dark ? "text-porcelain/50" : "text-umber/60",
+            dark ? "text-porcelain/75" : "text-umber/85",
           )}
         >
           <span
@@ -206,6 +205,10 @@ export function PageHero({
           {eyebrow}
         </span>
 
+        <p className={cn("caption", dark ? "text-porcelain/75" : "text-umber")}>
+          ARGILLA — an independent design concept. Stories, projects and specifications are illustrative.
+        </p>
+
         <h1 className={cn(title.length > 1 ? "display-xl" : "display-lg")}>
           {title.map((line, i) => (
             <span
@@ -213,7 +216,7 @@ export function PageHero({
               className="block overflow-hidden pb-[0.06em]"
               style={{ paddingLeft: i > 0 ? `${i * 4}vw` : undefined }}
             >
-              <span data-page-line className="block will-change-transform">
+              <span data-page-line className="block">
                 {line}
               </span>
             </span>
@@ -251,7 +254,7 @@ export function PageHero({
                   <dt
                     className={cn(
                       "label",
-                      dark ? "text-porcelain/40" : "text-umber/50",
+                      dark ? "text-porcelain/75" : "text-umber/85",
                     )}
                   >
                     {item.label}

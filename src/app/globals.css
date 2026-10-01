@@ -35,6 +35,7 @@
   /* Rhythm */
   --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
   --spacing-section: clamp(5rem, 12vw, 11rem);
+  --spacing-reading: 42rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -51,6 +52,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     scrollbar-gutter: stable;
+    scroll-padding-top: 6rem;
   }
 
   /* Lenis drives scrolling; native smooth-scroll would fight it. */
@@ -91,6 +93,18 @@
     text-wrap: pretty;
   }
 
+  html.scroll-locked, html.scroll-locked body { overflow: hidden; }
+
+  main { min-width: 0; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  button:not(:disabled), summary { cursor: pointer; }
+  button:disabled { cursor: not-allowed; opacity: 0.6; }
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 6px;
+  }
+  [id] { scroll-margin-top: 6rem; }
+
   ::selection {
     background-color: var(--color-terracotta);
     color: var(--color-porcelain);
@@ -100,14 +114,6 @@
     outline: 2px solid var(--color-terracotta);
     outline-offset: 3px;
     border-radius: 2px;
-  }
-
-  /* Only hide the system cursor once the custom one is actually mounted. */
-  body[data-custom-cursor="on"],
-  body[data-custom-cursor="on"] a,
-  body[data-custom-cursor="on"] button,
-  body[data-custom-cursor="on"] [role="button"] {
-    cursor: none;
   }
 
   input,
@@ -134,7 +140,7 @@
     /* Capped against height as well as width: three stacked lines must always
        fit a short laptop viewport without overflowing the hero. Phones get a
        larger share of the width, where 13.5vw left the claim looking timid. */
-    font-size: clamp(3.25rem, min(17vw, 19vh), 14rem);
+    font-size: clamp(4.25rem, min(14vw, 16svh), 12rem);
     line-height: 0.86;
     letter-spacing: -0.035em;
   }
@@ -171,9 +177,9 @@
     font-family: var(--font-sans);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
-    line-height: 1.2;
+    line-height: 1.5;
   }
 
   .body-lg {
@@ -197,7 +203,7 @@
     width: 100%;
     padding-inline: var(--spacing-gutter);
     margin-inline: auto;
-    max-width: 120rem;
+    max-width: 108rem;
   }
 
   .section-y {
@@ -213,62 +219,21 @@
 
 /* --------------------------------------------------------------------------
    Animation primitives
-   Elements start hidden ONLY when JS can animate them back in — the `.js-anim`
-   class is set on <html> by the motion bootstrapper, so no-JS users see content.
-   -------------------------------------------------------------------------- */
+   Reveal starts are applied by mounted GSAP contexts. Server-rendered content
+   stays visible if JavaScript does not load.
+   */
 
 @layer utilities {
-  .js-anim [data-anim="fade-up"] {
-    opacity: 0;
-    transform: translate3d(0, 2rem, 0);
-  }
-
-  .js-anim [data-anim="fade"] {
-    opacity: 0;
-  }
-
-  .js-anim [data-anim="mask"] {
-    clip-path: inset(0 0 100% 0);
-  }
-
-  .js-anim [data-anim="mask-left"] {
-    clip-path: inset(0 100% 0 0);
-  }
-
-  /* Cards and framed media: a shorter rise with a barely-there settle. */
-  .js-anim [data-anim="rise"] {
-    opacity: 0;
-    transform: translate3d(0, 2.25rem, 0) scale(0.985);
-  }
-
-  .js-anim [data-anim="line"] {
-    transform: scaleX(0);
-    transform-origin: left center;
-  }
-
-  .js-anim [data-split] {
-    opacity: 0;
-  }
-
-  /* Chrome elements whose entrance is played by GSAP. Gating these on
-     `.js-anim` means a visitor without JavaScript — or one whose bundle fails —
-     still gets a usable navigation bar and a readable page header, rather than
-     an invisible one. */
-  .js-anim [data-js-hidden],
-  .js-anim [data-page-fade] {
-    opacity: 0;
-  }
-
-  /* No JavaScript means no preloader to dismiss it, and a transparent
-     full-screen overlay would block every click on the page underneath. */
-  html:not(.js) [data-preloader] {
-    display: none;
-  }
+  /* Content is visible by default. GSAP owns entrance states only after its
+     component mounts, so a failed bundle cannot hide the document. */
 
   /* Reduced motion: never hide anything. */
   @media (prefers-reduced-motion: reduce) {
-    .js-anim [data-anim],
-    .js-anim [data-split] {
+    [data-anim], [data-line-inner], [data-page-line], [data-page-fade],
+    [data-hero-line], [data-hero-fade], [data-hero-cta], [data-hero-detail],
+    [data-hero-content], [data-js-hidden], [data-statement-line], [data-word],
+    [data-texture-swap], [data-motion-frame], [data-intro-line], [data-intro-vessel] {
+      visibility: visible !important;
       opacity: 1 !important;
       transform: none !important;
       clip-path: none !important;
@@ -298,15 +263,19 @@
     display: none;
   }
 
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.35;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  .catalogue-strip { scroll-snap-type: x proximity; }
+  .catalogue-strip article { scroll-snap-align: start; }
+  .catalogue-strip:focus-visible { outline-offset: -3px; }
+  .menu-title { font-size: clamp(2rem, min(5vw, 6svh), 5rem); line-height: 1.08; }
+  .caption { font-size: 0.75rem; line-height: 1.6; letter-spacing: 0.04em; }
+  @media (hover: hover) {
+    a:hover .card-alternate { opacity: 1; transform: scale(1); }
+    a:hover .card-primary { transform: scale(1.035); }
   }
+  a:focus-visible .card-alternate { opacity: 1; transform: scale(1); }
+  a:focus-visible .card-spec { transform: translateY(0); }
+
+
 }
 
 /* --------------------------------------------------------------------------
@@ -322,20 +291,5 @@
   50% {
     transform: translateY(0.5rem);
     opacity: 0.4;
-  }
-}
-
-@keyframes argilla-marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes argilla-spin {
-  to {
-    transform: rotate(360deg);
   }
 }

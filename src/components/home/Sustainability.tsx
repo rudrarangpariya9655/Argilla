@@ -26,8 +26,8 @@ export function Sustainability() {
               </h2>
             </div>
             <p data-anim="fade-up" className="body-base max-w-sm text-umber">
-              We are wary of environmental claims we cannot evidence, so this
-              page describes process rather than percentages.
+              A concept for thoughtful manufacturing. These illustrative
+              practices are not verified environmental claims.
             </p>
           </div>
           <Rule />
@@ -63,7 +63,7 @@ export function Sustainability() {
                       className="size-5 text-terracotta transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1"
                       strokeWidth={1.4}
                     />
-                    <span className="label text-umber/40 tabular-nums">
+                    <span className="label text-umber/85 tabular-nums">
                       {pillar.index}
                     </span>
                   </span>

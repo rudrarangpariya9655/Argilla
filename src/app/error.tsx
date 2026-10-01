@@ -20,7 +20,7 @@ export default function Error({
   return (
     <section className="flex min-h-[80svh] items-center bg-porcelain">
       <div className="shell flex flex-col gap-8">
-        <span className="label text-umber/60">Something went wrong</span>
+        <span className="label text-umber/85">Something went wrong</span>
         <h1 className="display-lg max-w-2xl text-charcoal">
           A crack in the glaze.
         </h1>
@@ -43,7 +43,7 @@ export default function Error({
           </Link>
         </div>
         {error.digest ? (
-          <p className="body-sm text-umber/50">Reference: {error.digest}</p>
+          <p className="body-sm text-umber/85">Reference: {error.digest}</p>
         ) : null}
       </div>
     </section>

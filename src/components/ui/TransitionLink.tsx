@@ -8,9 +8,7 @@ import { usePageTransition } from "@/components/layout/PageTransition";
 type Props = ComponentProps<typeof Link> & { href: string };
 
 /**
- * `next/link` with the brand's cover transition. Keeps real anchor semantics —
- * middle-click, modifier-click and "open in new tab" all behave normally, and
- * prefetching still happens on hover.
+ * `next/link` with immediate navigation and native modified-click behavior.
  */
 export function TransitionLink({ href, onClick, ...props }: Props) {
   const { navigate } = usePageTransition();
@@ -26,7 +24,10 @@ export function TransitionLink({ href, onClick, ...props }: Props) {
       event.ctrlKey ||
       event.shiftKey ||
       event.altKey ||
-      event.button !== 0
+      event.button !== 0 ||
+      (event.currentTarget.target && event.currentTarget.target !== "_self") ||
+      event.currentTarget.hasAttribute("download") ||
+      (!href.startsWith("/") && !href.startsWith("#"))
     ) {
       return;
     }
@@ -40,6 +41,17 @@ export function TransitionLink({ href, onClick, ...props }: Props) {
     event.preventDefault();
     navigate(href);
   };
+
+  // Let native fragment links reach the shared scrolling/focus handler.
+  if (href.includes("#") && (href.startsWith("#") || href.split("#")[0] === pathname)) {
+    const anchorProps = { ...props };
+    delete anchorProps.as;
+    delete anchorProps.prefetch;
+    delete anchorProps.replace;
+    delete anchorProps.scroll;
+    delete anchorProps.onNavigate;
+    return <a href={href} onClick={onClick} {...anchorProps} />;
+  }
 
   return <Link href={href} onClick={handleClick} {...props} />;
 }

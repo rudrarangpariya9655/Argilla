@@ -19,7 +19,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const project = projectBySlug(slug);
-  if (!project) return { title: "Project not found" };
+  if (!project) notFound();
 
   return {
     title: project.name,
@@ -93,14 +93,14 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                   data-anim="fade-up"
                   className="flex flex-col gap-1.5 border-t border-umber/15 pt-4"
                 >
-                  <dt className="label text-umber/50">{fact.label}</dt>
+                  <dt className="label text-umber/85">{fact.label}</dt>
                   <dd className="body-base text-charcoal">{fact.value}</dd>
                 </div>
               ))}
             </dl>
 
             <div data-anim="fade-up" className="flex flex-col gap-3 border-t border-umber/15 pt-4">
-              <span className="label text-umber/50">Collections used</span>
+              <span className="label text-umber/85">Collections used</span>
               <ul className="flex flex-col gap-2">
                 {collections.map((collection) => (
                   <li key={collection.slug}>
@@ -149,7 +149,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                   <cite className="body-base not-italic text-porcelain">
                     {project.quote.author}
                   </cite>
-                  <span className="label text-porcelain/45">
+                  <span className="label text-porcelain/75">
                     {project.quote.role}
                   </span>
                 </footer>

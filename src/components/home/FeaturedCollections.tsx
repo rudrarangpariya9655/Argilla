@@ -45,7 +45,6 @@ export function FeaturedCollections() {
             collection={lead}
             index={1}
             ratio="tall"
-            priority
             className="lg:col-span-6"
             sizes="(max-width: 1024px) 92vw, 46vw"
           />

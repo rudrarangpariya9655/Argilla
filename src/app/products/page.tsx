@@ -7,12 +7,13 @@ import { CallToAction } from "@/components/home/CallToAction";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Argilla ceramic surfaces and objects: full-body porcelain, large-format slabs, extruded terracotta and hand-thrown stoneware, with full technical data.",
+    "Explore thirteen illustrative ARGILLA references: full-body porcelain, large-format slabs, terracotta and hand-thrown stoneware.",
   alternates: { canonical: "/products" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Products — Argilla",
     description:
-      "Ceramic surfaces and objects with full technical data, samples on request.",
+      "An illustrative catalogue of ceramic surfaces and objects, with material reference downloads.",
     url: "/products",
   },
 };
@@ -23,12 +24,12 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Catalogue"
         title={["Surfaces", "and objects"]}
-        lead="Pressed, extruded and thrown. Every reference below ships with technical data and a sample on request."
+        lead="Pressed, extruded and thrown. Explore thirteen material references, compare finishes and prepare a project brief."
         crumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
         meta={[
           { label: "References", value: "13 shown" },
           { label: "Collections", value: "06" },
-          { label: "Lead time", value: "3 to 6 weeks" },
+          { label: "Format", value: "A concept catalogue" },
         ]}
       />
 

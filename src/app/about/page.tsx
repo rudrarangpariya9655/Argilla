@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "Argilla has made ceramics in one works outside Modena since 1998: three throwers, one kiln, and a deliberate decision to stay small.",
   alternates: { canonical: "/about" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "About — Argilla",
     description:
       "One site, one clay store, one set of hands on every recipe since 1998.",
@@ -70,7 +71,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow={`Since ${SITE.founded}`}
         title={["A small works", "outside Modena."]}
-        lead="Argilla began with three throwers and a single kiln. Twenty-five years later there are more machines and roughly the same number of opinions."
+        lead="Argilla began with three throwers and a single kiln. The imagined history follows a studio growing around its material."
         image={{
           id: 36731542,
           alt: "A craftsman standing in a ceramics studio surrounded by finished work",
@@ -136,13 +137,13 @@ export default function AboutPage() {
       <section className="section-y bg-ivory" aria-labelledby="timeline-heading">
         <div className="shell">
           <Reveal className="flex flex-col gap-8">
-            <Eyebrow index="02">History</Eyebrow>
+            <Eyebrow index="02">Illustrative history</Eyebrow>
             <h2
               id="timeline-heading"
               data-anim="fade-up"
               className="display-lg max-w-xl text-charcoal"
             >
-              Twenty-five years, five turning points.
+              A material story, five turning points.
             </h2>
             <Rule />
           </Reveal>
@@ -196,7 +197,7 @@ export default function AboutPage() {
                 data-anim="fade-up"
                 className="flex flex-col gap-4 border-t border-umber/15 py-10 first:border-t-0 first:pt-0"
               >
-                <span className="label text-umber/40 tabular-nums">
+                <span className="label text-umber/85 tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="display-sm text-charcoal">{value.title}</h3>

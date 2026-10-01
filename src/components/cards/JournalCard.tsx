@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { ArrowUpRight } from "lucide-react";
 import { BLUR, src } from "@/lib/images";
 import type { Article } from "@/lib/data/journal";
@@ -52,11 +52,11 @@ export function JournalCard({
 
         <div className="flex flex-1 flex-col gap-3 pt-5">
           <div className="flex items-center gap-3">
-            <time dateTime={article.date} className="label text-umber/50">
+            <time dateTime={article.date} className="label text-umber/85">
               {formatDate(article.date)}
             </time>
             <span aria-hidden="true" className="h-px w-5 bg-umber/25" />
-            <span className="label text-umber/50">{article.readTime}</span>
+            <span className="label text-umber/85">{article.readTime}</span>
           </div>
 
           <h3

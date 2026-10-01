@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef } from "react";
 import { gsap, EASE, DURATION, TRAVEL } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
 import { BLUR, src } from "@/lib/images";
-import { useIntro } from "@/components/layout/IntroProvider";
 import { HeroTheme } from "@/components/layout/NavTheme";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -19,23 +18,21 @@ const HEADLINE = ["SHAPED", "BY", "EARTH."] as const;
 
 const DETAILS = [
   { label: "Material", value: "Full-body porcelain" },
-  { label: "Origin", value: "Sassuolo, Italy" },
-  { label: "Fired at", value: "1220 C" },
+  { label: "Collections", value: "Six material stories" },
+  { label: "Perspective", value: "An independent brand concept" },
 ];
 
 /**
- * Full-viewport opening. The entrance is a single timeline that only starts
- * once the preloader reports done, so the two never overlap.
+ * Full-viewport opening with a short material reveal and immediate navigation.
  */
 export function Hero() {
-  const { ready } = useIntro();
   const rootRef = useRef<HTMLElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     const root = rootRef.current;
-    if (!root || !ready) return;
+    if (!root) return;
 
     const reduced = prefersReducedMotion();
 
@@ -61,14 +58,14 @@ export function Hero() {
         .fromTo(
           mediaRef.current,
           { clipPath: "inset(14% 9% 14% 9%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: EASE.expo },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: EASE.expo },
         )
         // A restrained settle: enough to feel the image arrive, not enough to
         // read as a zoom.
         .fromTo(
           imageRef.current,
           { scale: 1.08 },
-          { scale: 1, duration: 1.9, ease: EASE.expo },
+          { scale: 1, duration: 1.2, ease: EASE.expo },
           0,
         )
         // 2. Heading lines rise from their masks, one behind the next.
@@ -83,69 +80,70 @@ export function Hero() {
           "[data-hero-fade]",
           { autoAlpha: 0, y: TRAVEL.md },
           { autoAlpha: 1, y: 0, duration: DURATION.base, stagger: 0.08 },
-          0.82,
+          0.35,
         )
         // 4. Call to action.
         .fromTo(
           "[data-hero-cta]",
           { autoAlpha: 0, y: TRAVEL.sm },
           { autoAlpha: 1, y: 0, duration: DURATION.base },
-          1.0,
+          0.5,
         )
         // 5. Editorial details last, so the eye lands on them after the claim.
         .fromTo(
           "[data-hero-detail]",
           { autoAlpha: 0, y: TRAVEL.sm },
           { autoAlpha: 1, y: 0, duration: DURATION.fast, stagger: 0.07 },
-          1.15,
+          0.65,
         );
 
-      // Gentle parallax on the backdrop while scrolling out of the hero.
-      gsap.to(imageRef.current, {
-        yPercent: 12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      // Larger screens retain the gentle exit; phones use a stable frame.
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        gsap.to(imageRef.current, {
+          yPercent: 12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
 
-      gsap.to("[data-hero-content]", {
-        yPercent: -8,
-        autoAlpha: 0.15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+        gsap.to("[data-hero-content]", {
+          yPercent: -8,
+          autoAlpha: 0.15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
     }, rootRef);
 
     return () => ctx.revert();
-  }, [ready]);
+  }, []);
 
   return (
     <section
       ref={rootRef}
-      className="relative flex h-[100svh] min-h-[38rem] flex-col justify-end overflow-hidden bg-ink"
+      className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
       aria-label="Introduction"
     >
       <HeroTheme theme="dark" />
       <div
-        ref={mediaRef}
+        ref={mediaRef} data-motion-frame
         className="absolute inset-0"
-        style={{ clipPath: "inset(18% 12% 18% 12%)" }}
       >
-        <div ref={imageRef} className="absolute -inset-y-[8%] inset-x-0">
+        <div ref={imageRef} data-motion-frame className="absolute -inset-y-[8%] inset-x-0">
           <Image
             src={src(HERO_IMAGE, 2400)}
             alt={HERO_IMAGE.alt}
             fill
-            priority
+            loading="eager"
             fetchPriority="high"
             sizes="100vw"
             quality={80}
@@ -169,10 +167,12 @@ export function Hero() {
 
       <div
         data-hero-content
-        className="shell relative z-10 flex flex-col gap-10 pb-12 pt-32 sm:pb-16"
+        className="shell relative z-10 flex flex-col gap-8 pb-8 pt-32 sm:gap-10 sm:pb-12 lg:pt-40"
       >
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           {/* Three explicit lines so the stagger is identical at every width. */}
+          <div className="flex min-w-0 flex-col gap-6">
+          <p data-hero-fade className="label text-porcelain/85">Architectural ceramic surfaces</p>
           <h1 className="display-hero text-porcelain">
             {HEADLINE.map((line, i) => (
               <span
@@ -182,24 +182,25 @@ export function Hero() {
               >
                 <span
                   data-hero-line
-                  className="block whitespace-nowrap will-change-transform"
+                  className="block whitespace-nowrap"
                 >
                   {line}
                 </span>
               </span>
             ))}
           </h1>
+          </div>
 
           <div className="flex max-w-sm flex-col gap-6 lg:pb-6">
             <p data-hero-fade className="body-lg text-porcelain/75">
-              Argilla presses, fires and finishes ceramic surfaces in a single
-              works outside Modena. Six collections, one material, no shortcuts.
+              Ceramic surfaces for spaces with a sense of permanence.
+              Six collections exploring the quiet character of clay.
             </p>
             <div data-hero-cta>
               <MagneticButton
                 href="/collections"
-                variant="solid"
-                className="border-porcelain/0"
+                variant="outline"
+                className="border-porcelain/50 text-porcelain hover:border-porcelain"
               >
                 Explore the collection
               </MagneticButton>
@@ -213,7 +214,7 @@ export function Hero() {
           <dl className="flex flex-wrap gap-x-10 gap-y-4">
             {DETAILS.map((detail) => (
               <div key={detail.label} data-hero-detail className="flex flex-col gap-1">
-                <dt className="label text-porcelain/40">{detail.label}</dt>
+                <dt className="label text-porcelain/70">{detail.label}</dt>
                 <dd className="body-sm text-porcelain/85">{detail.value}</dd>
               </div>
             ))}
@@ -222,7 +223,7 @@ export function Hero() {
           <a
             href="#introduction"
             data-hero-detail
-            className="group flex items-center gap-3 text-porcelain/60 transition-colors hover:text-porcelain"
+            className="group flex min-h-11 items-center gap-3 text-porcelain/75 transition-colors hover:text-porcelain"
           >
             <span className="label">Scroll</span>
             <span

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -10,24 +10,24 @@ import { PRIMARY_NAV, SITE } from "@/lib/data/site";
 import { cn } from "@/lib/utils";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { Magnetic } from "@/components/ui/MagneticButton";
-import { useIntro } from "./IntroProvider";
 import { useNavTheme } from "./NavTheme";
 import { FullscreenMenu } from "./FullscreenMenu";
 import { SearchOverlay } from "./SearchOverlay";
 
 export function Navbar() {
-  const { ready } = useIntro();
   const { theme } = useNavTheme();
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
-  // Entrance: the bar drops in once the preloader has cleared.
+  // Entrance: a short reveal keeps the navigation immediately accessible.
   useIsomorphicLayoutEffect(() => {
     const nav = navRef.current;
-    if (!nav || !ready) return;
+    if (!nav) return;
 
     if (prefersReducedMotion()) {
       gsap.set(nav, { opacity: 1, y: 0 });
@@ -41,13 +41,13 @@ export function Navbar() {
     const tween = gsap.fromTo(
       nav,
       { opacity: 0, y: -28 },
-      { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.15 },
+      { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
     );
 
     return () => {
       tween.kill();
     };
-  }, [ready]);
+  }, []);
 
   // Hide on scroll down, reveal on scroll up, frost once past the fold.
   useIsomorphicLayoutEffect(() => {
@@ -87,7 +87,7 @@ export function Navbar() {
       },
     });
 
-    return () => trigger.kill();
+    return () => { trigger.kill(); gsap.killTweensOf(nav); gsap.set(nav, { yPercent: 0 }); };
   }, [menuOpen, searchOpen]);
 
   // Over a dark hero the bar has no background of its own, so the type has to
@@ -105,7 +105,9 @@ export function Navbar() {
 
       <header
         ref={navRef}
+        data-site-header
         data-js-hidden
+        onFocusCapture={() => gsap.set(navRef.current, { yPercent: 0 })}
         className={cn(
           "fixed inset-x-0 top-0 z-[100] transition-[background-color,backdrop-filter,border-color] duration-500",
           scrolled && !menuOpen
@@ -115,9 +117,9 @@ export function Navbar() {
       >
         <nav
           aria-label="Primary"
-          className="shell flex items-center justify-between gap-6 py-5"
+          className="shell flex items-center justify-between gap-4 py-5"
         >
-          <Magnetic strength={0.18}>
+          <Magnetic>
             <TransitionLink
               href="/"
               aria-label={`${SITE.name} — home`}
@@ -133,18 +135,18 @@ export function Navbar() {
             </TransitionLink>
           </Magnetic>
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-6 xl:flex">
             {PRIMARY_NAV.map((item) => {
               const active =
                 pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <li key={item.href}>
-                  <Magnetic strength={0.3}>
+                  <Magnetic>
                     <TransitionLink
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "group label relative inline-block py-2.5 transition-colors duration-500",
+                        "group label relative inline-flex min-h-11 items-center py-2.5 transition-colors duration-500",
                         onDark
                           ? "text-porcelain/75 hover:text-porcelain"
                           : "text-charcoal/80 hover:text-charcoal",
@@ -166,13 +168,13 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3 sm:gap-5">
-            <Magnetic strength={0.3}>
+            <Magnetic>
               <button
                 type="button"
-                onClick={() => setSearchOpen(true)}
+                onClick={() => { closeMenu(); setSearchOpen(true); }}
                 aria-label="Search the site"
                 className={cn(
-                  "group -m-3 flex items-center gap-2 p-3 transition-colors duration-500",
+                  "group -m-3 flex min-h-11 min-w-11 items-center gap-2 p-3 transition-colors duration-500",
                   onDark ? "text-porcelain" : "text-charcoal",
                 )}
               >
@@ -184,14 +186,14 @@ export function Navbar() {
             <MenuToggle
               open={menuOpen}
               onDark={onDark}
-              onToggle={() => setMenuOpen((v) => !v)}
+              onToggle={() => { closeSearch(); setMenuOpen((v) => !v); }}
             />
           </div>
         </nav>
       </header>
 
-      <FullscreenMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <FullscreenMenu open={menuOpen} onClose={closeMenu} />
+      <SearchOverlay open={searchOpen} onClose={closeSearch} />
     </>
   );
 }
@@ -206,14 +208,14 @@ function MenuToggle({
   onToggle: () => void;
 }) {
   return (
-    <Magnetic strength={0.3}>
+    <Magnetic>
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={open}
         aria-controls="argilla-menu"
         className={cn(
-          "-my-3 flex items-center gap-3 py-3 transition-colors duration-500",
+          "-my-3 flex min-h-11 items-center gap-3 py-3 transition-colors duration-500",
           onDark ? "text-porcelain" : "text-charcoal",
         )}
       >

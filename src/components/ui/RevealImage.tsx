@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef } from "react";
 import { gsap, ENTER, EASE, DURATION } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -116,12 +116,12 @@ export function RevealImage({
 
   return (
     <div
-      ref={wrapRef}
+      ref={wrapRef} data-motion-frame
       className={cn("relative overflow-hidden bg-sand", className)}
     >
       <div
-        ref={innerRef}
-        className="absolute inset-0 will-change-transform"
+        ref={innerRef} data-motion-frame
+        className="absolute inset-0"
         // Extra bleed so parallax never exposes an edge.
         style={parallax !== 0 ? { top: "-8%", bottom: "-8%" } : undefined}
       >
@@ -131,7 +131,7 @@ export function RevealImage({
           fill
           sizes={sizes}
           quality={quality}
-          priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           loading={priority ? undefined : "lazy"}
           placeholder="blur"
           blurDataURL={BLUR}

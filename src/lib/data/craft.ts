@@ -135,14 +135,6 @@ export const TEXTURES: Texture[] = [
   },
 ];
 
-/** DEMO figures. Replace with verified, auditable numbers before publishing. */
-export const STATS = [
-  { value: 25, suffix: "+", label: "Years of craft", note: "Since 1998" },
-  { value: 40, suffix: "+", label: "Countries", note: "Specified worldwide" },
-  { value: 500, suffix: "+", label: "Surface designs", note: "Across six collections" },
-  { value: 1200, suffix: "+", label: "Projects", note: "Residential to civic" },
-] as const;
-
 export type Pillar = {
   index: string;
   title: string;

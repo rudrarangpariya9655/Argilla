@@ -51,7 +51,6 @@ export function ProjectsIndex() {
                 key={project.slug}
                 project={project}
                 ratio={layout.ratio}
-                priority={i < 2}
                 className={`${layout.span} ${layout.offset}`}
                 sizes="(max-width: 1024px) 92vw, 50vw"
               />

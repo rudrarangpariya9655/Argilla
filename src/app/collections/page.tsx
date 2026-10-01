@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Six bodies of ceramic work from Argilla: Earth, Stone, Terracotta, Marble, Minimal and Artisan. Full-body porcelain, extruded terracotta and hand-thrown stoneware.",
   alternates: { canonical: "/collections" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Collections — Argilla",
     description:
       "Six bodies of ceramic work, from unglazed full-body porcelain to hand-thrown studio vessels.",
@@ -31,7 +32,7 @@ export default function CollectionsPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Collections" }]}
         meta={[
           { label: "Collections", value: "06" },
-          { label: "Surfaces", value: "70+" },
+          { label: "Surfaces", value: "13 references" },
           { label: "Formats", value: "200mm to 1600 x 3200" },
         ]}
       />
@@ -49,7 +50,7 @@ export default function CollectionsPage() {
                 a surface from Earth and a vessel from Artisan share the same
                 oxides even though they look nothing alike.
               </p>
-              <p data-anim="fade-up" className="body-sm max-w-xs text-umber/70">
+              <p data-anim="fade-up" className="body-sm max-w-xs text-umber/85">
                 Samples of any collection are sent as 100mm squares, free to
                 trade accounts.
               </p>
@@ -66,7 +67,6 @@ export default function CollectionsPage() {
                 collection={collection}
                 index={i + 1}
                 ratio={RATIOS[i % RATIOS.length]}
-                priority={i < 2}
                 // Every other card drops to create a staggered column.
                 className={i % 2 === 1 ? "lg:mt-[12vh]" : undefined}
                 sizes="(max-width: 1024px) 92vw, 46vw"

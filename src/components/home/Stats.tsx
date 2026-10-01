@@ -4,8 +4,18 @@ import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { prefersReducedMotion } from "@/hooks/useReducedMotion";
-import { STATS } from "@/lib/data/craft";
+import { CRAFT_STAGES } from "@/lib/data/craft";
+import { COLLECTIONS } from "@/lib/data/collections";
+import { PRODUCTS } from "@/lib/data/products";
+import { PROJECTS } from "@/lib/data/projects";
 import { Eyebrow, Reveal } from "@/components/ui/Primitives";
+
+const STATS = [
+  { value: COLLECTIONS.length, label: "Collections", note: "From Earth to Artisan" },
+  { value: PRODUCTS.length, label: "Surfaces & objects", note: "Inside the catalogue" },
+  { value: PROJECTS.length, label: "Project stories", note: "Spaces to explore" },
+  { value: CRAFT_STAGES.length, label: "Stages of making", note: "From raw earth to finish" },
+];
 
 /** Figures count up once, when the row first enters the viewport. */
 export function Stats() {
@@ -36,7 +46,7 @@ export function Stats() {
           onEnter: () => {
             gsap.to(counter, {
               value: target,
-              duration: 1.9,
+              duration: 0.8,
               ease: "power2.out",
               onUpdate: () => {
                 el.textContent = String(Math.round(counter.value));
@@ -67,12 +77,12 @@ export function Stats() {
               data-anim="fade-up"
               className="display-lg max-w-xl text-porcelain"
             >
-              Small works, long reach.
+              One material. Many possibilities.
             </h2>
           </div>
-          <p data-anim="fade-up" className="body-sm max-w-xs text-porcelain/45">
-            Figures shown are placeholder demo data and are not audited
-            business statistics.
+          <p data-anim="fade-up" className="body-sm max-w-xs text-porcelain/75">
+            An overview of this concept catalogue, from material studies to
+            architectural stories.
           </p>
         </Reveal>
 
@@ -88,12 +98,11 @@ export function Stats() {
             >
               <span className="display-xl flex items-baseline text-porcelain">
                 <span data-stat-value={stat.value} className="tabular-nums">
-                  0
+                  {stat.value}
                 </span>
-                <span className="text-terracotta">{stat.suffix}</span>
               </span>
               <span className="body-base text-porcelain/80">{stat.label}</span>
-              <span className="label text-porcelain/35">{stat.note}</span>
+              <span className="label text-porcelain/75">{stat.note}</span>
             </div>
           ))}
         </Reveal>

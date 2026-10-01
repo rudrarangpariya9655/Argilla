@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useState } from "react";
 import { BLUR, src, type Img } from "@/lib/images";
 import { cn } from "@/lib/utils";
@@ -18,23 +18,24 @@ export function ProductGallery({
   name: string;
 }) {
   const [active, setActive] = useState(0);
+  const [visited, setVisited] = useState(() => new Set([0]));
 
   return (
     <div className="flex flex-col gap-4">
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-sand sm:aspect-[3/4]">
-        {images.map((image, i) => (
+        {images.map((image, i) => visited.has(i) && (
           <Image
             key={image.id + "-" + i}
             src={src(image, 1400)}
-            alt={image.alt}
+            alt={active === i ? image.alt : ""}
             fill
             sizes="(max-width: 1024px) 92vw, 52vw"
             quality={80}
-            priority={i === 0}
+            aria-hidden={active !== i}
             placeholder="blur"
             blurDataURL={BLUR}
             className={cn(
-              "object-cover transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "object-cover transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]",
               active === i ? "scale-100 opacity-100" : "scale-[1.05] opacity-0",
             )}
           />
@@ -44,15 +45,16 @@ export function ProductGallery({
       <div
         role="group"
         aria-label={`${name} gallery`}
-        className="grid grid-cols-4 gap-3 sm:gap-4"
+        className="grid gap-2 sm:gap-4"
+        style={{ gridTemplateColumns: `repeat(${Math.min(images.length, 5)}, minmax(0, 1fr))` }}
       >
         {images.map((image, i) => (
           <button
             key={`thumb-${image.id}-${i}`}
             type="button"
-            onClick={() => setActive(i)}
+            onClick={() => { setVisited((previous) => new Set(previous).add(i)); setActive(i); }}
             aria-label={`View image ${i + 1} of ${images.length}: ${image.alt}`}
-            aria-current={active === i}
+            aria-pressed={active === i}
             className={cn(
               "relative aspect-square overflow-hidden bg-sand transition-opacity duration-500",
               active === i ? "opacity-100" : "opacity-55 hover:opacity-85",

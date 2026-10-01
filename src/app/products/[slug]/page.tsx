@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Script from "next/script";
-import { Download, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { PRODUCTS, productBySlug } from "@/lib/data/products";
 import { collectionBySlug } from "@/lib/data/collections";
-import { SITE } from "@/lib/data/site";
 import { src } from "@/lib/images";
 import { PageHero } from "@/components/sections/PageHero";
 import { ProductGallery } from "@/components/sections/ProductGallery";
@@ -22,7 +20,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const product = productBySlug(slug);
-  if (!product) return { title: "Product not found" };
+  if (!product) notFound();
 
   return {
     title: product.name,
@@ -49,31 +47,8 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
 
   const gallery = [product.cover, product.alt, ...product.gallery];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.tagline,
-    material: product.material,
-    brand: { "@type": "Brand", name: SITE.name },
-    image: [src(product.cover, 1200)],
-    // Demo catalogue: price is indicative and not a live offer.
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-    },
-  };
-
   return (
     <>
-      <Script
-        id={`product-jsonld-${product.slug}`}
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <PageHero
         eyebrow={`${collection?.name ?? "Argilla"} / ${product.year}`}
         title={[product.name]}
@@ -87,7 +62,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
         ]}
         meta={[
           { label: "Material", value: product.material },
-          { label: "Format", value: `${product.dimensions} mm` },
+          { label: "Format", value: product.dimensions },
           { label: "Finish", value: product.finish },
         ]}
       />
@@ -118,7 +93,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
 
             {/* Colours. */}
             <div className="flex flex-col gap-4">
-              <span className="label text-umber/50">
+              <span className="label text-umber/85">
                 Available colours ({product.colours.length})
               </span>
               <ul className="flex flex-wrap gap-5">
@@ -140,13 +115,13 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
               {[
                 { label: "Collection", value: collection?.name ?? "—" },
                 { label: "Finishes", value: product.finishes.join(", ") },
-                { label: "Dimensions", value: `${product.dimensions} mm` },
+                { label: "Dimensions", value: product.dimensions },
                 { label: "Thickness", value: product.thickness },
                 { label: "Applications", value: product.applications.join(", ") },
                 { label: "Indicative price", value: product.price },
               ].map((fact) => (
                 <div key={fact.label} className="flex flex-col gap-1.5">
-                  <dt className="label text-umber/50">{fact.label}</dt>
+                  <dt className="label text-umber/85">{fact.label}</dt>
                   <dd className="body-sm text-charcoal">{fact.value}</dd>
                 </div>
               ))}
@@ -156,7 +131,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
 
             {/* Technical data. */}
             <div className="flex flex-col gap-4">
-              <span className="label text-umber/50">Technical information</span>
+              <span className="label text-umber/85">Technical information</span>
               <dl className="flex flex-col">
                 {product.spec.map((row) => (
                   <div
@@ -170,9 +145,9 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
                   </div>
                 ))}
               </dl>
-              <p className="body-sm text-umber/60">
-                Demo specification. Request the current technical datasheet for
-                project documentation.
+              <p className="body-sm text-umber/85">
+                Demo specification. Ratings and prices require independent
+                verification for a real project.
               </p>
             </div>
 
@@ -184,30 +159,13 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
               >
                 Request a sample
               </MagneticButton>
-              <MagneticButton
-                href={`/contact?intent=downloads&product=${product.slug}`}
-                variant="outline"
-              >
-                Download catalogue
-              </MagneticButton>
+              <a href={`/catalogue/${product.slug}`} download className="label inline-flex min-h-12 items-center gap-3 border border-charcoal/30 px-6 py-4 transition-colors hover:bg-charcoal hover:text-porcelain">
+                <FileText aria-hidden="true" className="size-4" /> Download specification · TXT
+              </a>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <UnderlineLink
-                href={`/contact?intent=downloads&product=${product.slug}`}
-                className="body-sm flex items-center gap-2 text-umber"
-              >
-                <FileText aria-hidden="true" className="size-4" />
-                Technical datasheet (PDF)
-              </UnderlineLink>
-              <UnderlineLink
-                href={`/contact?intent=downloads&product=${product.slug}`}
-                className="body-sm flex items-center gap-2 text-umber"
-              >
-                <Download aria-hidden="true" className="size-4" />
-                BIM and CAD files
-              </UnderlineLink>
-            </div>
+            <p className="body-sm text-umber">Illustrative pricing and specifications. No certified PDF or BIM files are offered for this concept.</p>
+            <UnderlineLink href={`/contact?intent=project&product=${product.slug}`} className="body-sm text-umber">Prepare a project enquiry</UnderlineLink>
           </div>
         </div>
       </section>

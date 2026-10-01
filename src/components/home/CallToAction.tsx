@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -52,7 +52,7 @@ export function CallToAction() {
       className="relative flex min-h-[92svh] items-center overflow-hidden bg-ink py-(--spacing-section) text-porcelain"
       aria-labelledby="cta-heading"
     >
-      <div ref={mediaRef} className="absolute -inset-y-[6%] inset-x-0">
+      <div ref={mediaRef} data-motion-frame className="absolute -inset-y-[6%] inset-x-0">
         <Image
           src={src(BACKDROP, 2000)}
           alt=""
@@ -73,9 +73,8 @@ export function CallToAction() {
       <div className="shell relative z-10 flex flex-col gap-12">
         <AnimatedText
           as="h2"
-          lines={["LET'S CREATE", "SOMETHING TIMELESS."]}
+          lines={["LET'S CREATE", "SOMETHING", "TIMELESS."]}
           className="display-xl max-w-5xl text-porcelain"
-          lineClassName="whitespace-nowrap"
         />
         <span id="cta-heading" className="sr-only">
           Work with Argilla
@@ -83,8 +82,8 @@ export function CallToAction() {
 
         <Reveal className="flex flex-col gap-10">
           <p data-anim="fade-up" className="body-lg max-w-lg text-porcelain/70">
-            Send us a drawing, a mood board or a single question about a slip
-            rating. We answer all three the same way.
+            Start with a material, a mood or a question. Explore the catalogue
+            and prepare an illustrative brief for your space.
           </p>
 
           <div

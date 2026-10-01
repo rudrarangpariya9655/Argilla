@@ -64,7 +64,13 @@ export function Reveal({
       targets.forEach((target, i) => {
         const kind = target.dataset.anim;
         const own = Number(target.dataset.animDelay ?? NaN);
-        const at = Number.isFinite(own) ? own : i * stagger;
+        const at = Number.isFinite(own) ? own : Math.min(i, 5) * stagger;
+        const initial = kind === "mask" ? { clipPath: "inset(0% 0% 100% 0%)" }
+          : kind === "mask-left" ? { clipPath: "inset(0% 100% 0% 0%)" }
+          : kind === "line" ? { scaleX: 0, transformOrigin: "left center" }
+          : kind === "fade" ? { opacity: 0 }
+          : { opacity: 0, y: 20 };
+        gsap.set(target, initial);
 
         switch (kind) {
           case "mask":
@@ -152,8 +158,8 @@ export function Eyebrow({
       data-anim="fade"
       className={cn(
         "label flex items-center gap-3",
-        tone === "muted" && "text-umber/70",
-        tone === "light" && "text-porcelain/60",
+        tone === "muted" && "text-umber/85",
+        tone === "light" && "text-porcelain/75",
         tone === "accent" && "text-terracotta",
         className,
       )}
@@ -201,13 +207,13 @@ export function UnderlineLink({
   // `py-2` is deliberate: an underline link is a line of small type, which
   // without padding gives a 13px tap target. The padding provides the vertical
   // rhythm in the lists these appear in, so no gap is lost.
-  const cls = cn("group inline-flex items-center gap-1.5 py-2", className);
+  const cls = cn("group inline-flex min-h-11 items-center gap-1.5 py-2", className);
 
   if (external) {
     return (
       <a
         href={href}
-        target="_blank"
+        target={href.startsWith("http") ? "_blank" : undefined}
         rel="noreferrer noopener"
         className={cls}
       >

@@ -11,24 +11,10 @@ export const SITE = {
   legalName: "Argilla Ceramica",
   tagline: "Shaped by earth.",
   description:
-    "Argilla makes architectural ceramic surfaces and hand-thrown vessels — clay bodies pressed, fired and finished for spaces built to outlast trend.",
-  /** Update to the production domain before launch. */
-  url: "https://argilla.example.com",
+    "Explore ARGILLA, an independent architectural ceramics concept: earthy porcelain surfaces, hand-thrown objects and editorial material stories.",
+  url: "https://argilla-three.vercel.app",
   locale: "en_GB",
   founded: 1998,
-  social: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Pinterest", href: "https://pinterest.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-  ],
-  /** Placeholder contact details — not a real studio. */
-  contact: {
-    studio: "Via delle Fornaci 12, 41049 Sassuolo, Italy",
-    showroom: "Unit 4, Clerkenwell Green, London EC1R",
-    email: "studio@argilla.example.com",
-    press: "press@argilla.example.com",
-    phone: "+39 0536 000 000",
-  },
 } as const;
 
 export type NavItem = { label: string; href: string };
@@ -46,6 +32,6 @@ export const PRIMARY_NAV: NavItem[] = [
 export const SECONDARY_NAV: NavItem[] = [
   { label: "Sustainability", href: "/sustainability" },
   { label: "Request a sample", href: "/contact?intent=sample" },
-  { label: "Downloads", href: "/contact?intent=downloads" },
+  { label: "Catalogue", href: "/catalogue/all" },
   { label: "Trade enquiries", href: "/contact?intent=trade" },
 ];

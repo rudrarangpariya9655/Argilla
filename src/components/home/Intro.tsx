@@ -85,7 +85,8 @@ export function Intro() {
 
         <div className="relative">
           <h2
-            id="intro-heading"
+          id="intro-heading"
+          aria-label={LINES.join(" ")}
             className="display-xl relative z-10 text-charcoal"
           >
             {LINES.map((line, i) => (
@@ -94,7 +95,7 @@ export function Intro() {
                 className="block overflow-hidden pb-[0.06em]"
                 style={{ paddingLeft: `${i * 6}vw` }}
               >
-                <span data-intro-line className="block will-change-transform">
+                <span data-intro-line className="block">
                   {line}
                 </span>
               </span>
@@ -104,7 +105,7 @@ export function Intro() {
           <div
             data-intro-vessel
             aria-hidden="true"
-            className="pointer-events-none absolute -right-[4vw] top-1/2 z-0 hidden w-[24vw] max-w-[22rem] -translate-y-1/2 will-change-transform md:block"
+            className="pointer-events-none absolute -right-[4vw] top-1/2 z-0 hidden w-[24vw] max-w-[22rem] -translate-y-1/2 md:block"
           >
             <RevealImage
               image={DRIFTING_VESSEL}
@@ -118,7 +119,8 @@ export function Intro() {
 
         <Reveal className="mt-16 grid gap-10 sm:mt-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div className="flex flex-col gap-6">
-            <p data-anim="fade-up" className="body-lg text-umber">
+            <p className="caption text-umber">An imagined Italian ceramic house</p>
+            <p data-anim="fade-up" className="body-lg max-w-[42rem] text-umber">
               We have made ceramics in the same works outside Modena since 1998.
               It began with three throwers and a single kiln, and it has stayed
               deliberately small: one site, one clay store, one set of hands on

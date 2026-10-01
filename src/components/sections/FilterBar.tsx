@@ -32,7 +32,7 @@ export function FilterBar({
               aria-pressed={selected}
               onClick={() => onChange(option)}
               className={cn(
-                "label border px-4 py-2.5 transition-colors duration-500",
+                "label min-h-11 border px-4 py-2.5 transition-colors duration-200",
                 selected
                   ? "border-charcoal bg-charcoal text-porcelain"
                   : "border-umber/25 text-umber hover:border-charcoal hover:text-charcoal",
@@ -44,7 +44,7 @@ export function FilterBar({
         })}
       </div>
 
-      <p aria-live="polite" className="label text-umber/50 tabular-nums">
+      <p aria-live="polite" className="label shrink-0 text-umber tabular-nums">
         {count} {count === 1 ? "result" : "results"}
       </p>
     </div>

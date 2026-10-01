@@ -72,6 +72,7 @@ export function BrandStatement() {
       <div className="shell">
         <h2
           id="statement-heading"
+          aria-label={LINES.join(" ")}
           className="display-xl text-charcoal"
         >
           {LINES.map((line, i) => (
@@ -82,7 +83,7 @@ export function BrandStatement() {
             >
               <span
                 data-statement-line
-                className="block whitespace-nowrap will-change-transform"
+                className="block"
               >
                 {line}
               </span>

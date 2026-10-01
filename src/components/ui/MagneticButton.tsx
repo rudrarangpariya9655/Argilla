@@ -17,12 +17,13 @@ import { TransitionLink } from "./TransitionLink";
 function useMagnetic(
   wrapRef: React.RefObject<HTMLElement | null>,
   innerRef: React.RefObject<HTMLElement | null>,
-  strength = 0.34,
+  strength = 0.08,
 ) {
   useIsomorphicLayoutEffect(() => {
     const wrap = wrapRef.current;
     const inner = innerRef.current;
     if (!wrap || !inner) return;
+    if (strength === 0) return;
     if (prefersReducedMotion()) return;
     if (!window.matchMedia(FINE_POINTER).matches) return;
 
@@ -70,7 +71,7 @@ const VARIANTS: Record<Variant, string> = {
 const FILLS: Record<Variant, string> = {
   solid: "bg-terracotta",
   outline: "bg-charcoal",
-  ghost: "bg-charcoal/5",
+  ghost: "bg-charcoal",
 };
 
 type BaseProps = {
@@ -109,7 +110,7 @@ export function MagneticButton({
         className={cn(
           "absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100",
           FILLS[variant],
-          variant === "solid" && "scale-y-100 group-hover:scale-y-0",
+          variant === "solid" && "scale-y-100 transition-colors group-hover:bg-charcoal group-focus-visible:bg-charcoal",
         )}
       />
       <span
@@ -118,7 +119,6 @@ export function MagneticButton({
           "relative z-10 flex items-center gap-3 transition-colors duration-400",
           variant !== "solid" &&
             "group-hover:text-porcelain group-focus-visible:text-porcelain",
-          variant === "solid" && "group-hover:text-charcoal",
         )}
       >
         <span className="label">{children}</span>
@@ -133,7 +133,7 @@ export function MagneticButton({
   );
 
   const shared = cn(
-    "group relative inline-flex items-center overflow-hidden border px-7 py-4 will-change-transform",
+    "group relative inline-flex items-center overflow-hidden border px-7 py-4",
     VARIANTS[variant],
     className,
   );
@@ -141,7 +141,7 @@ export function MagneticButton({
   if ("href" in rest && rest.href) {
     const { href, ...linkRest } = rest as { href: string };
     return (
-      <div ref={wrapRef} className="inline-block will-change-transform">
+      <div ref={wrapRef} className="inline-block">
         <TransitionLink href={href} className={shared} {...linkRest}>
           {content}
         </TransitionLink>
@@ -151,7 +151,7 @@ export function MagneticButton({
 
   const buttonRest = rest as React.ComponentProps<"button">;
   return (
-    <div ref={wrapRef} className="inline-block will-change-transform">
+    <div ref={wrapRef} className="inline-block">
       <button type="button" className={shared} {...buttonRest}>
         {content}
       </button>
@@ -162,7 +162,7 @@ export function MagneticButton({
 /** A lighter magnetic treatment for nav items and icon buttons. */
 export function Magnetic({
   children,
-  strength = 0.22,
+  strength = 0,
   className,
 }: {
   children: ReactNode;
@@ -174,8 +174,8 @@ export function Magnetic({
   useMagnetic(wrapRef, innerRef, strength);
 
   return (
-    <div ref={wrapRef} className={cn("inline-block will-change-transform", className)}>
-      <span ref={innerRef} className="inline-block will-change-transform">
+    <div ref={wrapRef} className={cn("inline-block", className)}>
+      <span ref={innerRef} className="inline-block">
         {children}
       </span>
     </div>

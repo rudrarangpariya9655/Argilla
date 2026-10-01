@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "How Argilla sources clay, recovers kiln heat, returns offcuts to the body blend and keeps recipes in production so surfaces are repaired rather than replaced.",
   alternates: { canonical: "/sustainability" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Sustainability — Argilla",
     description:
       "Process, not percentages: how we source, fire and keep ceramic surfaces in service.",
@@ -100,7 +101,7 @@ export default function SustainabilityPage() {
               data-anim="fade-up"
               className="display-lg max-w-xl text-charcoal"
             >
-              Five things we actually do.
+              Five proposed practices.
             </h2>
             <Rule />
           </Reveal>
@@ -148,7 +149,7 @@ export default function SustainabilityPage() {
                         className="size-5 text-terracotta"
                         strokeWidth={1.4}
                       />
-                      <span className="label text-umber/45 tabular-nums">
+                      <span className="label text-umber/85 tabular-nums">
                         {pillar.index}
                       </span>
                     </span>
@@ -196,7 +197,7 @@ export default function SustainabilityPage() {
           </Reveal>
 
           <Reveal className="mt-14">
-            <p data-anim="fade" className="body-sm max-w-2xl text-porcelain/40">
+            <p data-anim="fade" className="body-sm max-w-2xl text-porcelain/75">
               This is a demonstration site. The practices described here are
               illustrative placeholder content and are not verified
               environmental claims for any real company.

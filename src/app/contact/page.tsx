@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { SITE } from "@/lib/data/site";
+
 import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { RevealImage } from "@/components/ui/RevealImage";
@@ -9,12 +9,13 @@ import { Eyebrow, Reveal, Rule, UnderlineLink } from "@/components/ui/Primitives
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Request a ceramic sample, open a trade account, download technical data or talk to the Argilla studio about a project.",
+    "Prepare a downloadable sample, trade or project brief for the ARGILLA ceramic portfolio concept.",
   alternates: { canonical: "/contact" },
   openGraph: {
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "ARGILLA — shaped by earth" }],
     title: "Contact — Argilla",
     description:
-      "Samples, trade accounts, technical downloads and project enquiries.",
+      "Explore the enquiry flow and prepare a local project brief for this ceramic brand concept.",
     url: "/contact",
   },
 };
@@ -22,19 +23,19 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How do I get a sample?",
-    a: "Use the form and choose Request a sample. Samples are 100mm squares, sent free to trade accounts and at cost to private clients.",
+    a: "Choose Request a sample in the form to prepare a downloadable brief. Sample delivery is not offered by this portfolio concept.",
   },
   {
     q: "What is the lead time?",
-    a: "Stock references ship in three weeks. Extruded terracotta and bookmatched slabs are made to order and run to six.",
+    a: "Lead times elsewhere in this concept are illustrative. No stock is held and no orders are processed.",
   },
   {
     q: "Do you supply outside the EU?",
-    a: "Yes, through distribution partners. Tell us the destination and we will put you in touch with the nearest one.",
+    a: "This fictional brand has no distribution partners. You can include a location in a demo project brief to explore the enquiry flow.",
   },
   {
     q: "Can I visit the works?",
-    a: "Specifiers are welcome by appointment. We run two visit days a month and they book up about six weeks ahead.",
+    a: "The studio and works are part of the brand story. There is no physical showroom or appointment service behind this demonstration.",
   },
 ];
 
@@ -44,12 +45,12 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Get in touch"
         title={["Talk to", "the studio."]}
-        lead="Send a drawing, a mood board or a single question about a slip rating. We answer all three the same way."
+        lead="Start with a material, a space or a question. Prepare a brief for the surfaces you have in mind."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         meta={[
-          { label: "Studio", value: "Sassuolo, Italy" },
-          { label: "Showroom", value: "London EC1R" },
-          { label: "Response", value: "Within two working days" },
+          { label: "Enquiries", value: "Samples, trade & projects" },
+          { label: "Format", value: "Downloadable project brief" },
+          { label: "Status", value: "Portfolio demonstration" },
         ]}
       />
 
@@ -88,48 +89,18 @@ export default function ContactPage() {
               parallax={8}
             />
 
-            <Reveal className="flex flex-col gap-8">
-              <div data-anim="fade-up" className="flex flex-col gap-2">
-                <span className="label text-umber/50">Studio and works</span>
-                <p className="body-base text-charcoal">{SITE.contact.studio}</p>
-              </div>
-              <div data-anim="fade-up" className="flex flex-col gap-2">
-                <span className="label text-umber/50">Showroom</span>
-                <p className="body-base text-charcoal">
-                  {SITE.contact.showroom}
-                </p>
-              </div>
-              <div data-anim="fade-up" className="flex flex-col gap-2">
-                <span className="label text-umber/50">Email</span>
-                <UnderlineLink
-                  href={`mailto:${SITE.contact.email}`}
-                  external
-                  className="body-base text-charcoal"
-                >
-                  {SITE.contact.email}
-                </UnderlineLink>
-                <UnderlineLink
-                  href={`mailto:${SITE.contact.press}`}
-                  external
-                  className="body-sm text-umber"
-                >
-                  {SITE.contact.press}
-                </UnderlineLink>
-              </div>
-              <div data-anim="fade-up" className="flex flex-col gap-2">
-                <span className="label text-umber/50">Telephone</span>
-                <p className="body-base text-charcoal">{SITE.contact.phone}</p>
-              </div>
-              <p data-anim="fade" className="body-sm text-umber/55">
-                All contact details on this demo site are placeholders and do
-                not reach a real business.
-              </p>
-            </Reveal>
+            <div className="flex flex-col gap-6 border-t border-umber/20 pt-8">
+              <h2 className="display-sm">A starting point for your project.</h2>
+              <p className="body-base max-w-md text-umber">Use the form to prepare a sample, trade or project brief. You can download it as a text file and keep it for reference.</p>
+              <p className="body-sm max-w-md text-umber">This is an independent portfolio concept. No enquiry is sent to a business, and no sample is dispatched.</p>
+              <a href="/catalogue/all" download className="label flex min-h-11 items-center gap-3 text-charcoal underline underline-offset-8">Download the demo catalogue · TXT ↗</a>
+              <UnderlineLink href="/site-notes#privacy" className="body-sm text-umber">About your information</UnderlineLink>
+            </div>
           </aside>
         </div>
       </section>
 
-      <section className="section-y bg-ivory" aria-labelledby="faq-heading">
+      <section id="faq" className="section-y bg-ivory" aria-labelledby="faq-heading">
         <div className="shell">
           <Reveal className="flex flex-col gap-8">
             <Eyebrow index="02">Common questions</Eyebrow>
@@ -150,7 +121,7 @@ export default function ContactPage() {
                 data-anim="fade-up"
                 className="group border-b border-umber/15 py-6"
               >
-                <summary className="flex cursor-pointer items-center justify-between gap-6 list-none">
+                <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-6 list-none">
                   <span className="display-sm text-charcoal">{faq.q}</span>
                   <span
                     aria-hidden="true"

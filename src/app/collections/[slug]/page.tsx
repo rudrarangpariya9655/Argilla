@@ -22,7 +22,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const collection = collectionBySlug(slug);
-  if (!collection) return { title: "Collection not found" };
+  if (!collection) notFound();
 
   return {
     title: `${collection.name} collection`,
@@ -105,7 +105,7 @@ export default async function CollectionPage(
                   data-anim="fade-up"
                   className="flex flex-col gap-3 border-t border-umber/15 pt-5"
                 >
-                  <dt className="label text-umber/50">{group.label}</dt>
+                  <dt className="label text-umber/85">{group.label}</dt>
                   <dd className="flex flex-wrap gap-x-6 gap-y-2">
                     {group.values.map((value) => (
                       <span key={value} className="body-base text-charcoal">
@@ -172,8 +172,8 @@ export default async function CollectionPage(
               >
                 In this collection
               </h2>
-              <p data-anim="fade" className="label text-umber/50">
-                {products.length} of {collection.productCount} shown
+              <p data-anim="fade" className="label text-umber/85">
+                {products.length} {products.length === 1 ? "reference" : "references"}
               </p>
             </div>
             <Rule />
@@ -260,7 +260,7 @@ export default async function CollectionPage(
                 <span className="display-sm text-charcoal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">
                   {other.name}
                 </span>
-                <span className="label text-umber/50 tabular-nums">
+                <span className="label text-umber/85 tabular-nums">
                   {other.productCount}
                 </span>
               </TransitionLink>

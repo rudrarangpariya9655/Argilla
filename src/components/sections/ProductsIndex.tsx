@@ -46,7 +46,6 @@ export function ProductsIndex() {
             <ProductCard
               key={product.slug}
               product={product}
-              priority={i < 3}
               // Every third card drops, breaking the grid's baseline.
               className={i % 3 === 1 ? "lg:mt-[8vh]" : undefined}
             />

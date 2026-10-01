@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/MaterialImage";
 import { ArrowUpRight } from "lucide-react";
 import { BLUR, src } from "@/lib/images";
 import type { Project } from "@/lib/data/projects";
@@ -42,7 +42,7 @@ export function ProjectCard({
             fill
             sizes={sizes}
             quality={80}
-            priority={priority}
+            fetchPriority={priority ? "high" : undefined}
             placeholder="blur"
             blurDataURL={BLUR}
             className="object-cover transition-transform duration-[520ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
@@ -67,7 +67,7 @@ export function ProjectCard({
           </div>
 
           <div className="flex shrink-0 flex-col items-end gap-3">
-            <span className="label text-umber/50 tabular-nums">
+            <span className="label text-umber/85 tabular-nums">
               {project.year}
             </span>
             <ArrowUpRight

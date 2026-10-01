@@ -32,8 +32,8 @@ export function ProductShowcase() {
               </h2>
             </div>
             <p data-anim="fade-up" className="body-base max-w-sm text-umber">
-              Every surface ships with technical data, a sample on request and a
-              body recipe we keep in production for a decade.
+              Explore illustrative material specifications, finishes and formats,
+              then prepare a brief around the references you like.
             </p>
           </div>
           <Rule />

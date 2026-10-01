@@ -39,13 +39,13 @@ export const EASE = {
 
 export const DURATION = {
   /** Micro-feedback: chips, small labels. */
-  fast: 0.5,
+  fast: 0.2,
   /** Standard entrance for text and small blocks. */
-  base: 0.9,
+  base: 0.55,
   /** Headings and cards. */
-  slow: 1.15,
+  slow: 0.75,
   /** Image masks and full-bleed reveals. */
-  reveal: 1.4,
+  reveal: 0.85,
 } as const;
 
 /** Vertical travel for entrance animations, in pixels. */

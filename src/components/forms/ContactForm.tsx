@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { productBySlug } from "@/lib/data/products";
 
 const INTENTS = [
   { value: "sample", label: "Request a sample" },
@@ -11,6 +12,7 @@ const INTENTS = [
   { value: "downloads", label: "Technical downloads" },
   { value: "project", label: "Project enquiry" },
   { value: "press", label: "Press" },
+  { value: "faq", label: "General question" },
 ] as const;
 
 type Field = "name" | "email" | "company" | "intent" | "message";
@@ -27,26 +29,35 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
  */
 export function ContactForm() {
   const searchParams = useSearchParams();
+  return <EnquiryForm key={searchParams.toString()} intent={searchParams.get("intent")} product={searchParams.get("product")} finish={searchParams.get("finish")} />;
+}
 
-  // Deep links from product pages and the menu preselect the enquiry type and
-  // seed the message. Derived once at mount rather than in an effect, so the
-  // first paint already shows the right values.
+function EnquiryForm({ intent, product, finish }: { intent: string | null; product: string | null; finish: string | null }) {
+  const confirmation = useRef<HTMLDivElement>(null);
+  const editing = useRef(false);
+  const context = product ? productBySlug(product)?.name : undefined;
   const [values, setValues] = useState(() => {
-    const intent = searchParams.get("intent");
-    const product = searchParams.get("product");
     return {
       name: "",
       email: "",
       company: "",
       intent:
         intent && INTENTS.some((i) => i.value === intent) ? intent : "project",
-      message: product
-        ? `I would like more information about ${product.replace(/-/g, " ")}.`
-        : "",
+      message: context
+        ? `I would like more information about ${context}.`
+        : finish ? `I would like to explore the ${finish.slice(0, 80)} finish for my project.` : "",
     };
   });
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  useEffect(() => {
+    if (sent) confirmation.current?.focus();
+    else if (editing.current) {
+      document.getElementById("contact-name")?.focus();
+      editing.current = false;
+    }
+  }, [sent]);
+  const brief = ["ARGILLA / DEMO PROJECT BRIEF", "Portfolio concept — this enquiry has not been sent.", "", `Name: ${values.name}`, `Email: ${values.email}`, `Studio: ${values.company || "—"}`, `Enquiry: ${INTENTS.find((i) => i.value === values.intent)?.label}`, "", values.message].join("\n");
 
   const set = (field: Field, value: string) => {
     setValues((v) => ({ ...v, [field]: value }));
@@ -78,21 +89,24 @@ export function ContactForm() {
   if (sent) {
     return (
       <div
+        ref={confirmation}
+        tabIndex={-1}
         role="status"
         className="flex flex-col gap-4 border border-umber/20 p-8"
       >
         <Check aria-hidden="true" className="size-6 text-terracotta" />
-        <h3 className="display-sm text-charcoal">Thank you, {values.name}.</h3>
+        <h3 className="display-sm text-charcoal">Your brief is ready, {values.name}.</h3>
         <p className="body-base max-w-md text-umber">
-          Your enquiry has been recorded locally. This demo site does not send
-          email, so nothing has left your browser.
+          Download your project brief below. Nothing has been sent or saved on
+          a server. This concept does not process real enquiries or sample requests.
         </p>
+        <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(brief)}`} download="argilla-project-brief.txt" className="label inline-flex min-h-12 self-start items-center border border-charcoal px-6 py-4 transition-colors hover:bg-charcoal hover:text-porcelain">Download brief · TXT ↗</a>
         <button
           type="button"
-          onClick={() => setSent(false)}
-          className="label mt-2 self-start text-charcoal underline underline-offset-4"
+          onClick={() => { editing.current = true; setSent(false); }}
+          className="label mt-2 flex min-h-11 items-center self-start text-charcoal underline underline-offset-4"
         >
-          Send another
+          Edit the brief
         </button>
       </div>
     );
@@ -132,7 +146,7 @@ export function ContactForm() {
         />
 
         <div className="flex flex-col gap-3">
-          <label htmlFor="contact-intent" className="label text-umber/60">
+          <label htmlFor="contact-intent" className="label text-umber/85">
             Enquiry type
           </label>
           <select
@@ -152,13 +166,15 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <label htmlFor="contact-message" className="label text-umber/60">
+        <label htmlFor="contact-message" className="label text-umber/85">
           Message <span className="text-terracotta">*</span>
         </label>
         <textarea
           id="contact-message"
           name="message"
           rows={5}
+          required
+          maxLength={5000}
           value={values.message}
           onChange={(event) => set("message", event.target.value)}
           aria-invalid={Boolean(errors.message)}
@@ -177,7 +193,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-6 pt-2">
-        <p className="body-sm max-w-sm text-umber/60">
+        <p className="body-sm max-w-sm text-umber/85">
           Demo form. Nothing is transmitted, stored on a server or emailed.
         </p>
         <button
@@ -189,7 +205,7 @@ export function ContactForm() {
             className="absolute inset-0 origin-bottom scale-y-0 bg-charcoal transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100"
           />
           <span className="relative z-10 flex items-center gap-3 transition-colors duration-500 group-hover:text-porcelain group-focus-visible:text-porcelain">
-            <span className="label">Send enquiry</span>
+            <span className="label">Prepare enquiry</span>
             <ArrowRight
               aria-hidden="true"
               className="size-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5"
@@ -222,7 +238,7 @@ function FieldText({
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <label htmlFor={id} className="label text-umber/60">
+      <label htmlFor={id} className="label text-umber/85">
         {label}
         {required ? <span className="ml-1 text-terracotta">*</span> : null}
       </label>
@@ -232,6 +248,8 @@ function FieldText({
         type={type}
         value={value}
         autoComplete={autoComplete}
+        required={required}
+        maxLength={type === "email" ? 254 : 160}
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
